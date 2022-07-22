@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_radius_small">3dp</dimen>
+    <dimen name="app_radius">8dp</dimen>
+    <dimen name="app_radius_secondary">16dp</dimen>
+    <dimen name="app_radius_max">256dp</dimen>
+</resources>

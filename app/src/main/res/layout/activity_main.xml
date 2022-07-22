@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.main.MainViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.main.MainActivity">
+
+            <TextView
+                android:id="@+id/tv_main_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="28dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@{viewModel.userName}"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="홍길동" />
+
+            <TextView
+                android:id="@+id/tv_main_name_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/main_name_desc"
+                android:textSize="20sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_main_name"
+                app:layout_constraintEnd_toStartOf="@+id/bt_main_qr"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_main_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_main_name" />
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginTop="8dp"
+                android:minLines="2"
+                android:text="@{viewModel.serverTime}"
+                android:textColor="?attr/customTextColorLight"
+                app:layout_constraintEnd_toStartOf="@+id/bt_main_qr"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_main_name"
+                tools:text="2022년 01월 01일\nAM 10:29" />
+
+            <Button
+                android:id="@+id/bt_main_qr"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/ic_main_bt_qr"
+                android:text="@string/main_text_qr_finish"
+                android:textSize="11dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView48"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_main_name"
+                tools:ignore="SpUsage" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_menu1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_square_round"
+                android:backgroundTint="?attr/customBackgroundColor"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView48">
+
+                <TextView
+                    android:id="@+id/bt_main_select_parkinglot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_square_round"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:fontFamily="@font/font_bold"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="36dp"
+                    android:text="@{viewModel.selectedParkingLot.Name}"
+                    android:textColor="?attr/customButtonTextColor"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="강원빌딩" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_main_select_parkinglot"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_main_space_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/main_space_desc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_main_select_parkinglot" />
+
+                <TextView
+                    android:id="@+id/tv_main_space_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@{viewModel.parkedCars.toString()}"
+                    android:textColor="?attr/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_space_desc"
+                    app:layout_constraintStart_toEndOf="@+id/tv_main_space_desc"
+                    app:layout_constraintTop_toTopOf="@+id/tv_main_space_desc"
+                    tools:text="12" />
+
+                <TextView
+                    android:id="@+id/tv_main_space_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/main_space_slash"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_space_desc"
+                    app:layout_constraintStart_toEndOf="@+id/tv_main_space_left"
+                    app:layout_constraintTop_toTopOf="@+id/tv_main_space_desc" />
+
+                <TextView
+                    android:id="@+id/tv_main_space_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@{viewModel.selectedParkingLot.Spaces}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_space_desc"
+                    app:layout_constraintStart_toEndOf="@+id/tv_main_space_slash"
+                    app:layout_constraintTop_toTopOf="@+id/tv_main_space_desc"
+                    tools:text="40" />
+
+                <ImageView
+                    android:id="@+id/bt_main_refresh"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_refresh_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_space_all"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_main_space_all"
+                    app:layout_constraintTop_toTopOf="@+id/tv_main_space_all"
+                    app:tint="?attr/customTextColorLight" />
+
+                <TextView
+                    android:id="@+id/tv_main_enabled_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/main_enabled_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/switchCompat"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_main_space_desc" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchCompat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="@{viewModel.selectedParkingLot.ParkEnabled}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_main_enabled_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_main_enabled_desc"
+                    app:thumbTint="@color/white"
+                    app:track="@drawable/ic_switch_track_selector" />
+
+                <View
+                    android:id="@+id/view_main_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/materialGray1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_main_enabled_desc" />
+
+                <LinearLayout
+                    android:id="@+id/bt_main_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/ic_square_round"
+                    android:backgroundTint="?attr/customLightButtonBackgroundColor"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    app:layout_constraintEnd_toStartOf="@id/bt_main_park"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_main_divider">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/img_main_bt_enter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_bold"
+                        android:text="@string/main_bt_enter" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bt_main_park"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/ic_square_round"
+                    android:backgroundTint="?attr/customLightButtonBackgroundColor"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bt_main_enter"
+                    app:layout_constraintTop_toTopOf="@+id/bt_main_enter">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/img_main_bt_park" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_bold"
+                        android:text="@string/main_bt_park" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bt_main_park_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="36dp"
+                    android:background="@drawable/ic_square_round"
+                    android:backgroundTint="?attr/customLightButtonBackgroundColor"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bt_main_profit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_main_enter">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/img_main_bt_history" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_bold"
+                        android:text="@string/main_bt_park_history" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bt_main_profit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/ic_square_round"
+                    android:backgroundTint="?attr/customLightButtonBackgroundColor"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bt_main_park_history"
+                    app:layout_constraintTop_toTopOf="@+id/bt_main_park_history">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/img_main_bt_profit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_bold"
+                        android:text="@string/main_bt_profit" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="36dp"
+                android:background="@drawable/ic_square_round"
+                android:backgroundTint="?attr/customBackgroundColor"
+                android:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_main_menu1"
+                app:layout_constraintVertical_bias="0">
+
+                <LinearLayout
+                    android:id="@+id/bt_main_parkinglot_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bt_main_hr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/img_main_bt_parkinglot_setting"
+                        app:tint="?attr/customTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_bt_parkinglot_setting"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@id/bt_main_hr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bt_main_charge"
+                    app:layout_constraintStart_toEndOf="@+id/bt_main_parkinglot_setting"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/img_main_bt_worker"
+                        app:tint="?attr/customTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_bt_hr"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bt_main_charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bt_main_insurance"
+                    app:layout_constraintStart_toEndOf="@+id/bt_main_hr"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/img_main_bt_charge"
+                        app:tint="?attr/customTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_bt_charge"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bt_main_insurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bt_main_charge"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/img_main_bt_insurance"
+                        app:tint="?attr/customTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_bt_insurance"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</layout>

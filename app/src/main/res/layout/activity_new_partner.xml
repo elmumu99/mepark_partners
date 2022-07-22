@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.newpartner.NewPartnerViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_new_partner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/new_partner_title"
+                android:textSize="16sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_new_partner">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_new_partner_partner_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_partner_partner_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_new_partner_partner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_partner_partner_name_hint"
+                    android:text="@={viewModel.partnerName}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_partner_partner_name" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_partner_contact"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_partner_partner_name" />
+
+                <EditText
+                    android:id="@+id/et_new_partner_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_partner_contact_hint"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:text="@={viewModel.contact}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_partner_contact" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_bn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_partner_bn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_new_partner_contact" />
+
+                <EditText
+                    android:id="@+id/et_new_partner_bn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_partner_bn_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.partnerBn}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_partner_bn" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bindVisibility="@{!viewModel.partnerBn.empty}"
+                    app:constraint_referenced_ids="tv_new_partner_photo,bt_new_partner_photo,tv_new_partner_photo_bt" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_partner_photo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_partner_bn" />
+
+                <EditText
+                    android:id="@+id/bt_new_partner_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="start"
+                    android:focusable="false"
+                    android:hint="@string/new_partner_photo_hint"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="48dp"
+                    android:text="@{viewModel.photoName}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_partner_photo" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_photo_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="첨부"
+                    android:textColor="?attr/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_new_partner_photo"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_new_partner_photo"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@+id/bt_new_partner_photo"
+                    app:layout_constraintTop_toTopOf="@+id/bt_new_partner_photo" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_partner_bank"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_new_partner_photo" />
+
+                <EditText
+                    android:id="@+id/bt_new_partner_bank_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:focusable="false"
+                    android:hint="은행 선택"
+                    android:text="@{viewModel.selectedBank}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_partner_bank" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_new_partner_bank_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_new_partner_bank_spinner"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@+id/bt_new_partner_bank_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/bt_new_partner_bank_spinner" />
+
+                <EditText
+                    android:id="@+id/et_new_partner_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/new_partner_bank_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.bankAccount}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/bt_new_partner_bank_spinner" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_new_partner_apply"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_new_partner_apply"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tv_new_partner_apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/new_partner_apply_description"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_partner_bank" />
+
+                <Button
+                    android:id="@+id/bt_new_partner_apply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{()->viewModel.applyNewPartner()}"
+                    android:text="@string/new_partner_apply"
+                    app:bindButtonEnabled="@{viewModel.formsFilled}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_partner_apply"
+                    app:layout_constraintVertical_bias="1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

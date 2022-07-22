@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.dialogs.CommonDialogViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/customBackgroundColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_common_dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@{viewModel.title}"
+                android:textSize="18sp"
+                app:bindVisibility="@{viewModel.title!=null}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/tv_common_dialog_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@{viewModel.message}"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_common_dialog_title"
+                tools:text="Lorem Ipsum" />
+
+            <View
+                android:id="@+id/view_dialog_common_divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="24dp"
+                android:background="?attr/customBackgroundColorGray"
+                app:layout_constraintTop_toBottomOf="@id/tv_common_dialog_message" />
+
+            <Button
+                android:id="@+id/bt_common_dialog_negative"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/customBackgroundColor"
+                android:text="@{viewModel.negativeText}"
+                android:textColor="?attr/customTextColorLight"
+                app:bindVisibility="@{viewModel.cancelable}"
+                app:layout_constraintEnd_toStartOf="@id/bt_common_dialog_positive"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_dialog_common_divider"
+                tools:text="Cancel" />
+
+            <Button
+                android:id="@+id/bt_common_dialog_positive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/customBackgroundColor"
+                android:text="@{viewModel.positiveText}"
+                android:textColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bt_common_dialog_negative"
+                app:layout_constraintTop_toBottomOf="@+id/view_dialog_common_divider"
+                tools:text="Accept" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</layout>

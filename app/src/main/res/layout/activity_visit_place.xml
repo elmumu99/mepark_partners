@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isEdit"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.visitplace.VisitPlaceViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor"
+        tools:context=".ui.newparkinglot.NewParkingLotActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_visit_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_visitplace"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="@{isEdit?viewModel.name:@string/visit_place_title_add}"
+                android:textSize="16sp"
+                tools:text="@string/visit_place_title_add" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_visit_place">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bindVisibility="@{!isEdit}"
+                    app:constraint_referenced_ids="tv_visit_place_name_desc,et_visit_place_name" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_name_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/visit_place_name"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_visit_place_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:focusable="@{!isEdit}"
+                    android:hint="@string/visit_place_name"
+                    android:text="@={viewModel.name}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visit_place_name_desc" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_free_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/visit_place_free_desc"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_visit_place_name" />
+
+                <EditText
+                    android:id="@+id/et_visit_place_free"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/visit_place_free_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.freeTime}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_visit_place_free_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visit_place_free_desc" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_free_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_minute"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_visit_place_free"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_visit_place_free" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_default_time_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/visit_place_default_time_desc"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_visit_place_free" />
+
+                <EditText
+                    android:id="@+id/et_visit_place_default_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/visit_place_default_time_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.defaultTime}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_visit_place_default_time_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visit_place_default_time_desc" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_default_time_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_minute"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_visit_place_default_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_visit_place_default_time" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_default_fee_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/visit_place_default_fee_desc"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_visit_place_default_time" />
+
+                <EditText
+                    android:id="@+id/et_visit_place_default_fee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/visit_place_default_fee_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.defaultFee}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_visit_place_default_time_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visit_place_default_fee_desc" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_default_fee_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_won"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_visit_place_default_fee"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_visit_place_default_fee" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_ten_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/visit_place_ten_desc"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_visit_place_default_fee" />
+
+                <EditText
+                    android:id="@+id/et_visit_place_ten"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/visit_place_ten_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.tenMinutesFee}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_visit_place_ten_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visit_place_ten_desc" />
+
+                <TextView
+                    android:id="@+id/tv_visit_place_ten_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_won"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_visit_place_ten"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_visit_place_ten" />
+
+                <Button
+                    android:id="@+id/bt_visit_place_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{isEdit?@string/visit_place_confirm_edit:@string/visit_place_confirm_add}"
+                    app:bindButtonEnabled="@{viewModel.formsFilled}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_visit_place_ten"
+                    app:layout_constraintVertical_bias="1"
+                    tools:text="@string/visit_place_confirm_add" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

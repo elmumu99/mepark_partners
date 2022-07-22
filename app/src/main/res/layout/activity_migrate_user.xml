@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mrpark1.meparkpartner.ui.Status" />
+
+        <import type="android.util.Patterns" />
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.migrateuser.MigrateUserViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor"
+        tools:context=".ui.migrateuser.MigrateUserActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_migrate_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/migrate_user_title"
+                android:textSize="16sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_migrate_user">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_migrate_user_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/migrate_user_description"
+                    android:textSize="18sp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_migrate_user_description">
+
+                    <TextView
+                        android:id="@+id/tv_migrate_user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/migrate_user_email"
+                        android:textColor="?attr/customTextColor" />
+
+                    <EditText
+                        android:id="@+id/et_migrate_user_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:layout_marginVertical="8dp"
+                        android:enabled="@{viewModel.currentStatus != Status.MIGRATE_AUTH_CODE_SENT}"
+                        android:hint="@string/migrate_user_email_hint"
+                        android:text="@={viewModel.email}" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="24dp"
+                        android:background="?attr/customBackgroundColorGray" />
+
+                    <TextView
+                        android:id="@+id/tv_migrate_user_auth_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/migrate_user_auth_method"
+                        android:textColor="?attr/customTextColor" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:layout_marginVertical="8dp"
+                        android:checkedButton="@={viewModel.authMethodRadio}"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_migrate_user_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/migrate_user_auth_email" />
+
+                        <RadioButton
+                            android:id="@+id/rb_migrate_user_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/migrate_user_auth_phone" />
+
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/bt_migrate_user_send_authcode"
+                        style="@style/ButtonStyleNormal"
+                        bindButtonEnabled="@{!(viewModel.email.empty||!Patterns.EMAIL_ADDRESS.matcher(viewModel.email).matches())}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{()->viewModel.getUpdateEmailAuthCode()}"
+                        android:text="@{viewModel.currentStatus == Status.MIGRATE_AUTH_CODE_SENT ? @string/migrate_user_resend_authcode : @string/migrate_user_send_authcode}"
+                        tools:text="@string/migrate_user_send_authcode" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="24dp"
+                        android:background="?attr/customBackgroundColorGray" />
+
+                    <TextView
+                        android:id="@+id/tv_migrate_user_authcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/migrate_user_authcode"
+                        android:textColor="?attr/customTextColor"
+                        app:bindVisibility="@{viewModel.showAuthCodeField}" />
+
+                    <EditText
+                        android:id="@+id/et_migrate_user_authcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:layout_marginVertical="8dp"
+                        android:hint="@string/migrate_user_authcode_hint"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:text="@={viewModel.authCode}"
+                        app:bindVisibility="@{viewModel.showAuthCodeField}" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_migrate_user_apply"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_migrate_user_apply"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tv_migrate_user_apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="18dp"
+                    android:text="@string/migrate_user_notice"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+                <Button
+                    android:id="@+id/bt_migrate_user_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->viewModel.updateUserEmail()}"
+                    android:text="@string/migrate_user_finish"
+                    app:bindButtonEnabled="@{viewModel.authCode.length()==6}"
+                    app:bindVisibility="@{viewModel.showAuthCodeField}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_migrate_user_apply"
+                    app:layout_constraintVertical_bias="1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.newparkinglot.NewParkingLotViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor"
+        tools:context=".ui.newparkinglot.NewParkingLotActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_new_parking_lot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="@{viewModel.isEdit?@string/new_parknig_lot_title_edit:@string/new_parking_lot_title}"
+                android:textSize="16sp"
+                tools:text="@string/new_parking_lot_title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_new_parking_lot">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_new_parking_lot_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_new_parking_lot_profile"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:background="@color/materialGray2"
+                        android:scaleType="centerCrop"
+                        app:bindImageUri="@{viewModel.photoUri}" />
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/iv_new_parking_lot_profile_add"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_circle"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:elevation="4dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_new_parking_lot_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/card_new_parking_lot_profile"
+                    app:layout_constraintTop_toTopOf="@+id/card_new_parking_lot_profile"
+                    app:layout_constraintVertical_bias="1" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_profile_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/card_new_parking_lot_profile"
+                    app:layout_constraintStart_toStartOf="@+id/card_new_parking_lot_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/card_new_parking_lot_profile" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_name_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_name"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_profile_desc" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/new_parking_lot_name"
+                    android:text="@={viewModel.name}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_name_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_address_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="주차장 주소"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_parking_lot_name" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:focusable="false"
+                    android:hint="주차장 주소"
+                    android:text="@={viewModel.address}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_address_desc" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_address_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="상세 주소"
+                    android:text="@={viewModel.addressDetail}"
+                    app:bindVisibility="@{!viewModel.address.empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_parking_lot_address" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_visit_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_visit"
+                    android:textSize="16sp"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_parking_lot_address_detail" />
+
+                <TextView
+                    android:id="@+id/bt_new_parking_lot_visit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_add_visit"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_new_parking_lot_visit_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_new_parking_lot_visit_desc"
+                    app:layout_constraintTop_toTopOf="@+id/tv_new_parking_lot_visit_desc" />
+
+                <TextView
+                    android:id="@+id/editText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="추가 버튼을 누르고 방문지를 등록해주세요."
+                    app:bindVisibility="@{viewModel.visitPlaces.empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_visit_desc" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_new_parking_lot_visit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    app:bindNewParkingLotVisitPlaces="@{viewModel.visitPlaces}"
+                    app:bindVisibility="@{!viewModel.visitPlaces.empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editText2"
+                    tools:listitem="@layout/row_parkinglot_visitplace" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_other_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_other"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_new_parking_lot_visit" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_other"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/new_parking_lot_other"
+                    android:inputType="number"
+                    android:text="@={viewModel.other}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_new_parking_lot_other_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_other_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_other_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_won"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_other" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_day_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_day"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_parking_lot_other" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/new_parking_lot_day"
+                    android:inputType="number"
+                    android:text="@={viewModel.day}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_new_parking_lot_day_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_day_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_day_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_won"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_day"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_day" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_month_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_month"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_new_parking_lot_day" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_month"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/new_parking_lot_month"
+                    android:inputType="number"
+                    android:text="@={viewModel.month}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_new_parking_lot_day_unit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_month_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_month_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_won"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_month"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_month" />
+
+                <View
+                    android:id="@+id/view_new_parking_lot_divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="36dp"
+                    android:background="?attr/customBackgroundColorGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_new_parking_lot_month" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_space_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_parking_lot_space"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_new_parking_lot_divider1" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_space_all_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/new_parking_lot_space_all"
+                    android:textSize="16sp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_space_all"
+                    app:layout_constraintEnd_toStartOf="@id/et_new_parking_lot_space_all"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_space_all" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_space_all"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:text="@={viewModel.spaceAll}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_new_parking_lot_space_all_unit"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_space_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_space_all_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_dae"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_space_all"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_space_all" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_space_max_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="최소 잔여 면수"
+                    android:textSize="16sp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_space_max"
+                    app:layout_constraintEnd_toStartOf="@id/et_new_parking_lot_space_max"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_space_max" />
+
+                <EditText
+                    android:id="@+id/et_new_parking_lot_space_max"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:text="@={viewModel.spaceMax}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_new_parking_lot_space_max_unit"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_new_parking_lot_space_all_desc" />
+
+                <TextView
+                    android:id="@+id/tv_new_parking_lot_space_max_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="@string/common_unit_dae"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_new_parking_lot_space_max"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_new_parking_lot_space_max" />
+
+                <ImageView
+                    android:id="@+id/bt_new_parking_lot_help_space"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_help_outline_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_new_parking_lot_space_max_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/et_new_parking_lot_space_max"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_new_parking_lot_space_max_desc"
+                    app:layout_constraintTop_toTopOf="@+id/tv_new_parking_lot_space_max_desc"
+                    app:tint="?attr/customTextColor" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bindVisibility="@{!viewModel.isEdit}"
+                    app:constraint_referenced_ids="view_new_parking_lot_divider2,imageView,textView44,textView45,linearLayout2,linearLayout3,textView" />
+
+                <View
+                    android:id="@+id/view_new_parking_lot_divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="36dp"
+                    android:background="?attr/customBackgroundColorGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_new_parking_lot_space_max" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="196dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/img_insurance"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_new_parking_lot_divider2" />
+
+                <TextView
+                    android:id="@+id/textView44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="보험 선택"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="4dp"
+                    android:text="원하시는 보험 유형을 선택해주세요."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@{viewModel.insurance.equals(`A`)?@drawable/ic_square_round_border_selected:@drawable/ic_square_round_border}"
+                    android:onClick="@{()->viewModel.setInsurance(`A`)}"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+                    app:layout_constraintEnd_toStartOf="@id/linearLayout3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView45"
+                    tools:background="@drawable/ic_square_round_border_selected">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_square_round_top"
+                        android:backgroundTint="?attr/colorPrimary"
+                        android:fontFamily="@font/font_bold"
+                        android:padding="12dp"
+                        android:text="기본형"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:bindBackgroundColorSelected="@{viewModel.insurance.equals(`A`)}"
+                        app:bindTextColorSelected="@{viewModel.insurance.equals(`A`)}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="보험료"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="건당 400원" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="대인"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="1인/1사고 당 3억" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="대물"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="1사고 당 1억" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="렌트카"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="무보상" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="자기부담금"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="50만원" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="보험료 사전충전 방식"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="보험료는 매월 정산하여 후 청구" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@{viewModel.insurance.equals(`B`)?@drawable/ic_square_round_border_selected:@drawable/ic_square_round_border}"
+                    android:onClick="@{()->viewModel.setInsurance(`B`)}"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/linearLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView45"
+                    tools:background="@drawable/ic_square_round_border">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_square_round_top"
+                        android:backgroundTint="?attr/customBackgroundColorGray"
+                        android:fontFamily="@font/font_bold"
+                        android:padding="12dp"
+                        android:text="렌트형"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        app:bindBackgroundColorSelected="@{viewModel.insurance.equals(`B`)}"
+                        app:bindTextColorSelected="@{viewModel.insurance.equals(`B`)}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="보험료"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="건당 500원" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="대인"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="1인/1사고 당 3억" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="대물"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="1사고 당 1억" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="렌트카"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="일 10만원 / 최대 30일" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="자기부담금"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="50만원" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="보험료 사전충전 방식"
+                        android:textColor="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="보험료는 매월 정산하여 후 청구" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/ic_square_round_border"
+                    android:onClick="@{()->viewModel.setInsurance(`N`)}"
+                    android:padding="14dp"
+                    android:text="선택 안함"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    app:bindBackgroundColorSelectedRed="@{viewModel.insurance.equals(`N`)}"
+                    app:bindTextColorSelected="@{viewModel.insurance.equals(`N`)}"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayout3" />
+
+                <Button
+                    android:id="@+id/bt_new_parking_lot_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:onClick="@{()->viewModel.addMyParkingLot()}"
+                    android:text="@{viewModel.isEdit?@string/new_parking_lot_edit:@string/new_parking_lot_add}"
+                    app:bindButtonEnabled="@{viewModel.formsFilled}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:text="@string/new_parking_lot_add" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

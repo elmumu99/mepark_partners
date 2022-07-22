@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.newuser.NewUserViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/customBackgroundColor"
+            tools:context=".ui.newuser.NewUserActivity">
+
+            <TextView
+                android:id="@+id/tv_new_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/new_user_title"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_new_user_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/new_user_description"
+                android:textSize="18sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_new_user_title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/bt_new_user_signup"
+                app:layout_constraintTop_toBottomOf="@+id/tv_new_user_description">
+
+                <TextView
+                    android:id="@+id/tv_new_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="26dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_user_name" />
+
+                <EditText
+                    android:id="@+id/et_new_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_user_name_hint"
+                    android:text="@={viewModel.name}" />
+
+                <TextView
+                    android:id="@+id/tv_new_user_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_user_birth" />
+
+                <EditText
+                    android:id="@+id/et_new_user_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_user_birth_hint"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:text="@={viewModel.birth}" />
+
+                <TextView
+                    android:id="@+id/tv_new_user_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/new_user_contact" />
+
+                <EditText
+                    android:id="@+id/et_new_user_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/new_user_contact_hint"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:text="@={viewModel.contact}" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_new_user_signup"
+                style="@style/ButtonStyleNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="8dp"
+                android:onClick="@{()->viewModel.addNewUser()}"
+                android:text="@string/new_user_signup"
+                app:bindButtonEnabled="@{!(viewModel.name.empty||viewModel.birth.length()!=6||9>viewModel.contact.length())}"
+                app:layout_constraintBottom_toTopOf="@+id/bt_new_user_migration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/bt_new_user_migration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/new_user_migration"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

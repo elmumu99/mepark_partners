@@ -1,0 +1,145 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MeparkPartner" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/brandBlue</item>
+        <item name="colorPrimaryVariant">@color/brandBlue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/brandBlue</item>
+        <item name="colorSecondaryVariant">@color/brandBlue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/customBackgroundColor</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+        <item name="android:ambientShadowAlpha">0.05</item>
+        <item name="android:spotShadowAlpha">0.05</item>
+        <!--        <item name="android:outlineAmbientShadowColor" tools:targetApi="P">?attr/colorPrimary</item>-->
+        <!--        <item name="android:outlineSpotShadowColor" tools:targetApi="P">?attr/colorPrimary</item>-->
+        <item name="colorSurface">?attr/colorPrimary</item>
+        <item name="colorOnSurface">?attr/colorPrimary</item>
+
+        <item name="customTextColor">@color/materialGray8</item>
+        <item name="customTextColorLight">@color/materialGray6</item>
+        <item name="customTextColorHint">@color/materialGray5</item>
+        <item name="customButtonTextColor">@color/white</item>
+        <item name="customBackgroundColor">@color/white</item>
+        <item name="customBackgroundColorGray">@color/materialGray1</item>
+        <item name="customLightButtonBackgroundColor">@color/materialGray1</item>
+        <item name="customSelectedColor">@color/brandBlueLight</item>
+        <item name="customSelectedTextColor">@color/brandBlue</item>
+
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="editTextStyle">@style/EditTextStyle</item>
+        <item name="android:buttonStyle">@style/ButtonStyleFull</item>
+        <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButtonTheme</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButtonTheme</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+    </style>
+
+    <style name="TextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?attr/customTextColor</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:background">@drawable/ic_square_round_border</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?attr/customTextColor</item>
+        <item name="android:textColorHint">?attr/customTextColorHint</item>
+    </style>
+
+    <style name="ButtonStyleFull" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/font_bold</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textColor">?attr/customButtonTextColor</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">18dp</item>
+    </style>
+
+    <style name="ButtonStyleNormal" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/font_bold</item>
+        <item name="android:background">@drawable/ic_square_round</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textColor">?attr/customButtonTextColor</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="ButtonStyleLight" parent="ButtonStyleNormal">
+        <item name="android:backgroundTint">?attr/customLightButtonBackgroundColor</item>
+        <item name="android:textColor">?attr/customTextColor</item>
+    </style>
+
+    <!--    <style name="ButtonStyleRound" parent="Widget.AppCompat.Button">-->
+    <!--        <item name="android:textAllCaps">false</item>-->
+    <!--        <item name="android:fontFamily">@font/font_bold</item>-->
+    <!--        <item name="android:background">@drawable/ic_square_round</item>-->
+    <!--        <item name="android:backgroundTint">?attr/colorPrimary</item>-->
+    <!--        <item name="android:textColor">?attr/customButtonTextColor</item>-->
+    <!--        <item name="android:textSize">17sp</item>-->
+    <!--    </style>-->
+
+    <style name="RadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:buttonTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="SnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">?attr/customBackgroundColor</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/ic_bottomsheet_background</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+    </style>
+
+    <style name="DatePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="android:windowBackground">?attr/customBackgroundColor</item>
+        <item name="android:colorControlActivated">?attr/colorPrimary</item>
+        <item name="android:textColorPrimary">?attr/customTextColor</item>
+        <item name="android:textColorSecondary">?attr/customTextColor</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerDialogButtonTheme</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerDialogButtonTheme</item>
+    </style>
+
+    <style name="DatePickerDialogButtonTheme" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?attr/customTextColor</item>
+    </style>
+
+    <style name="DialogButtonTheme" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?attr/customTextColor</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/brandBlue</item>
+        <item name="android:background">?attr/customBackgroundColor</item>
+        <item name="android:colorForeground">?attr/customTextColorLight</item>
+        <item name="android:fontFamily">@font/font_bold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+</resources>

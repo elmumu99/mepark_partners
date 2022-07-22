@@ -1,0 +1,207 @@
+<resources>
+    <string name="app_name">me.park partner</string>
+
+    <string name="common_error_internet">인터넷 연결을 확인해주세요.</string>
+    <string name="common_back_press">한번 더 누르면 종료됩니다.</string>
+    <string name="common_ok">확인</string>
+    <string name="common_cancel">취소</string>
+    <string name="common_empty" />
+    <string name="common_day">일주차</string>
+    <string name="common_month">월주차</string>
+    <string name="common_enter">등록</string>
+
+    <string name="onboard_title">환영합니다!</string>
+    <string name="onboard_description">Google 계정으로 파트너 앱 이용을 시작해 보세요.</string>
+    <string name="onboard_start">미팍 시작하기</string>
+
+    <string name="new_user_title">회원가입</string>
+    <string name="new_user_description">미스터팍 가입을 환영합니다 :)</string>
+    <string name="new_user_name">이름</string>
+    <string name="new_user_name_hint">이름</string>
+    <string name="new_user_birth">생년월일 (6자리)</string>
+    <string name="new_user_birth_hint">840101</string>
+    <string name="new_user_contact">휴대폰 번호</string>
+    <string name="new_user_contact_hint">01012345678</string>
+    <string name="new_user_signup">가입하기</string>
+    <string name="new_user_migration">기존 회원이신가요?</string>
+
+    <string name="migrate_user_title">기존 계정 불러오기</string>
+    <string name="migrate_user_description">기존 계정의 이메일 주소를 \n현재 로그인한 이메일로 변경합니다.</string>
+    <string name="migrate_user_email">기존 계정 이메일</string>
+    <string name="migrate_user_email_hint">example@gmail.com</string>
+    <string name="migrate_user_auth_method">인증번호를 받을 방법을 선택해주세요.</string>
+    <string name="migrate_user_auth_email">이메일로 받기</string>
+    <string name="migrate_user_auth_phone">휴대폰 번호로 받기</string>
+    <string name="migrate_user_send_authcode">인증번호 전송</string>
+    <string name="migrate_user_resend_authcode">인증번호 재전송</string>
+    <string name="migrate_user_authcode">인증번호</string>
+    <string name="migrate_user_authcode_hint">인증번호 6자리</string>
+    <string name="migrate_user_finish">불러오기 완료</string>
+
+    <string name="no_partner_title" formatted="true">안녕하세요, %s님!</string>
+    <string name="no_partner_description">파트너사 관리자의 초대를 \n기다리는 중입니다.</string>
+    <string name="no_partner_new_partner_description">직접 파트너사를 운영하실 예정인가요?</string>
+    <string name="no_partner_new_partner">파트너사 만들기</string>
+    <string name="no_partner_no_invitation">아직 받은 초대가 없습니다.</string>
+    <string name="no_partner_refresh">초대 새로고침</string>
+
+    <string name="new_partner_title">파트너사 만들기</string>
+    <string name="new_partner_description">파트너사 신청에 필요한 정보를 입력해주세요.</string>
+    <string name="new_partner_partner_name">파트너사 이름</string>
+    <string name="new_partner_partner_name_hint">미스터팍</string>
+    <string name="new_partner_contact">파트너사 연락처</string>
+    <string name="new_partner_contact_hint">01012345678</string>
+    <string name="new_partner_bn">사업자번호 (없을 시 공란)</string>
+    <string name="new_partner_photo">사업자등록증</string>
+    <string name="new_partner_bn_hint">1234567890</string>
+    <string name="new_partner_bank">계좌번호</string>
+    <string name="new_partner_bank_hint">123456789</string>
+    <string name="new_partner_apply_description">영업일 기준 n일 내로 승인이 완료됩니다.</string>
+    <string name="new_partner_apply">승인 요청하기</string>
+    <string name="common_error_unknown">요청에 실패했습니다.</string>
+    <string name="no_partner_invited">초대가 도착했습니다.</string>
+    <string name="migrate_user_authcode_sent">인증번호가 전송되었습니다.</string>
+    <string name="migrate_user_wrong_authcode">인증번호가 일치하지 않습니다.</string>
+    <string name="start_error_onetap_canceled">구글 로그인이 취소되었습니다.</string>
+    <string name="start_error_no_google">기기에 로그인된 유효한 구글 계정이 없습니다.</string>
+    <string name="new_parking_lot_title">주차장 추가</string>
+    <string name="new_parking_lot_profile">대표이미지</string>
+    <string name="new_parking_lot_name">주차장 이름</string>
+    <string name="new_parking_lot_visit">방문지</string>
+    <string name="new_parking_lot_add_visit">추가</string>
+    <string name="new_parking_lot_other">외부 주차 요금 (10분)</string>
+    <string name="new_parking_lot_won">원</string>
+    <string name="new_parking_lot_day">일주차 요금 (미사용 시 공란)</string>
+    <string name="new_parking_lot_month">월주차 요금 (미사용 시 공란)</string>
+    <string name="new_parking_lot_space">주차면수 설정</string>
+    <string name="new_parking_lot_space_all">총 가용댓수 \n(최대 입차가능 댓수)</string>
+    <string name="common_unit_dae">대</string>
+    <string name="new_parking_lot_add">추가</string>
+    <string name="main_dialog_new_parkinglot_title">주차장 생성</string>
+    <string name="main_dialog_new_parkinglot_message">원활한 파트너 운영을 위해서 최소 1개의 주차장을 등록해야 합니다.</string>
+    <string name="main_dialog_no_partner_title">파트너 정보 없음</string>
+    <string name="main_dialog_no_partner_message">소속된 파트너 정보가 없습니다. 파트너 초대 화면으로 이동합니다.</string>
+    <string name="main_name_desc">님</string>
+    <string name="main_text_qr_finish">퇴근</string>
+    <string name="main_space_desc">현 주차장 상황:&#160;</string>
+    <string name="main_space_slash">&#160;/&#160;</string>
+    <string name="main_enabled_desc">주차장 주차 가능 여부</string>
+    <string name="main_bt_enter">입차관리</string>
+    <string name="main_bt_park">주차관리</string>
+    <string name="main_bt_park_history">출차내역</string>
+    <string name="main_bt_profit">매출관리</string>
+    <string name="main_bt_parkinglot_setting">주차장 설정</string>
+    <string name="main_bt_hr">인사관리</string>
+    <string name="main_bt_charge">정산 페이지</string>
+    <string name="main_bt_insurance">보험 가입</string>
+    <string name="main_need_admin">관리자 권한이 필요합니다.</string>
+
+    <string name="new_partner_photo_hint">이미지 파일</string>
+    <string name="main_bottomsheet_select_parkinglot_title">주차장 선택</string>
+    <string name="migrate_user_invalid_email">이메일이 존재하지 않습니다.</string>
+    <string name="new_partner_bottomsheet_title">은행 선택</string>
+    <string name="new_partner_bottomsheet_desc">저축은행 및 다른 은행사들은 문의 바랍니다.</string>
+    <string name="migrate_user_notice">변경 후에는 기존 이메일 주소로 로그인할 수 없게 됩니다.</string>
+    <string name="enter_bottomsheet_title_visitplace">방문지 선택</string>
+    <string name="enter_reserve_placeholder">주차 예약 기능은 곧 오픈됩니다!</string>
+    <string name="enter_tab_enter">입차관리</string>
+    <string name="enter_tab_reserve">주차예약</string>
+    <string name="enter_lp_desc">차량번호</string>
+    <string name="enter_lp_hint"><![CDATA[예) 123가4567 -> 1234567]]></string>
+    <string name="enter_visitplace">방문장소</string>
+    <string name="enter_contact_desc">핸드폰 번호</string>
+    <string name="enter_contact_hint">01012345678</string>
+    <string name="enter_memo">메모</string>
+    <string name="enter_cartype">차량 유형</string>
+    <string name="enter_cartype_small">중·소형</string>
+    <string name="enter_cartype_big">대형/SUV</string>
+    <string name="enter_submit">입차등록</string>
+    <string name="visit_place_title_add">방문지 추가</string>
+    <string name="visit_place_title_edit">방문지 수정</string>
+    <string name="visit_place_name">방문지 이름</string>
+    <string name="visit_place_free_desc">무료 주차 시간</string>
+    <string name="visit_place_free_hint">0 (무료주차가 제공되는 경우)</string>
+    <string name="common_unit_minute">분</string>
+    <string name="common_unit_won">원</string>
+    <string name="visit_place_default_time_desc">기본 주차 시간</string>
+    <string name="visit_place_default_time_hint">30</string>
+    <string name="visit_place_default_fee_desc">기본 주차 요금 (발렛비용 포함)</string>
+    <string name="visit_place_default_fee_hint">2000</string>
+    <string name="visit_place_ten_desc">기본시간외 추가요금 (10분)</string>
+    <string name="visit_place_ten_hint">1000</string>
+    <string name="visit_place_confirm_add">추가하기</string>
+    <string name="visit_place_confirm_edit">수정하기</string>
+    <string name="row_car_cartype_big">(대형/SUV)</string>
+    <string name="row_car_cartype_small">(중·소형)</string>
+    <string name="common_placeholder">곧 오픈되는 기능입니다!</string>
+    <string name="row_car_status_exit">출차요청</string>
+    <string name="row_car_status_parked">입차완료</string>
+    <string name="already_have_an_account">Already have an account? <font color='#01C6DB'>Login</font></string>
+    <string name="onboard_1_title">내 손안의 주차장, <font color='#3362dd'>미팍</font>\n클릭 한번으로 언제 어디서나</string>
+    <string name="onboard_2_title">QR코드로 여는 <font color='#3362dd'>간편 주차장 운영서비스</font>\n미팍을 경험해보세요!</string>
+    <string name="onboard_3_title">미팍 전용 발렛파킹 <font color='#3362dd'>제휴보험</font></string>
+    <string name="main_bt_more">더보기</string>
+    <string name="fill_point_fill">충전하기</string>
+    <string name="fill_point_copy">계좌번호 복사하기</string>
+    <string name="new_parknig_lot_title_edit">주차장 수정</string>
+    <string name="new_parking_lot_edit">수정</string>
+    <string name="address_title">주소 검색</string>
+    <string name="car_edit_title">정보수정</string>
+    <string name="car_edit_car_number_desc">차량번호</string>
+    <string name="car_edit_visitplace_desc">방문지</string>
+    <string name="car_edit_entertime_desc">입차시간</string>
+    <string name="car_edit_entertime_hint">23:59</string>
+    <string name="car_edit_edit">수정</string>
+    <string name="car_more_title">설정</string>
+    <string name="car_more_return">회차처리</string>
+    <string name="car_more_confirm">확인</string>
+    <string name="car_more_discount">할인금액 설정</string>
+    <string name="car_more_dash">-</string>
+    <string name="car_more_penalty">추가금액요청</string>
+    <string name="car_more_edit">정보수정</string>
+    <string name="car_more_save">저장하기</string>
+
+    <string-array name="bank_names">
+        <item>하나은행</item>
+        <item>NH농협은행</item>
+        <item>지역농협</item>
+        <item>KB국민은행 </item>
+        <item>신한은행</item>
+        <item>우리은행</item>
+        <item>카카오뱅크</item>
+        <item>IBK기업은행</item>
+        <item>K뱅크</item>
+        <item>새마을금고</item>
+        <item>SC제일은행</item>
+        <item>씨티은행</item>
+        <item>BNK부산은행</item>
+        <item>대구은행</item>
+        <item>신협</item>
+        <item>우체국</item>
+        <item>광주은행</item>
+        <item>전북은행</item>
+        <item>수협은행</item>
+        <item>KDB산업은행</item>
+        <item>제주은행</item>
+    </string-array>
+
+    <string-array name="point_prices">
+        <item>300,000원</item>
+        <item>500,000원</item>
+        <item>1,000,000원</item>
+        <item>2,000,000원</item>
+        <item>직접 입력</item>
+    </string-array>
+
+    <string-array name="charge_type">
+        <item>신용카드</item>
+        <item>무통장입금</item>
+    </string-array>
+
+    <string-array name="user_role">
+        <item>직원</item>
+        <item>관리자</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

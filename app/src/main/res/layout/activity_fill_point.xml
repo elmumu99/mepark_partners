@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.charge.FillPointViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_fill_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="예치금 충전"
+                android:textSize="16sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_fill_point">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_fill_point_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="금액"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/bt_fill_point_price_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:enabled="@{viewModel.bankNum.empty}"
+                    android:focusable="false"
+                    android:text="@={viewModel.selectedPrice}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fill_point_price" />
+                <EditText
+                    android:id="@+id/bt_fill_point_type_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:enabled="@{viewModel.bankNum.empty}"
+                    android:focusable="false"
+                    android:text="@={viewModel.selectedChargeType}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bt_fill_point_price_spinner" />
+
+                <EditText
+                    android:id="@+id/et_fill_point_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:enabled="@{viewModel.bankNum.empty}"
+                    android:focusable="@{viewModel.bankNum.empty}"
+                    android:hint="금액을 입력해주세요."
+                    android:inputType="number"
+                    android:maxLength="8"
+                    android:text="@={viewModel.realPrice}"
+                    app:bindVisibility="@{viewModel.showRealPrice}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_fill_point_type_spinner" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:bindVisibility="@{viewModel.bankNum.empty}"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_fill_point_price_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_fill_point_price_spinner"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@+id/bt_fill_point_price_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/bt_fill_point_price_spinner" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:bindVisibility="@{viewModel.bankNum.empty}"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_fill_point_type_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_fill_point_type_spinner"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@+id/bt_fill_point_type_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/bt_fill_point_type_spinner" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bindVisibility="@{!viewModel.bankNum.empty}"
+                    app:constraint_referenced_ids="tv_fill_point_bank_num_desc,tv_fill_point_bank_num,iv_fill_point_noti,tv_fill_point_noti,iv_fill_point_noti2,tv_fill_point_noti2" />
+
+                <TextView
+                    android:id="@+id/tv_fill_point_bank_num_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="가상계좌"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fill_point_price" />
+
+                <TextView
+                    android:id="@+id/tv_fill_point_bank_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.bankName+` `+viewModel.bankNum}"
+                    android:textIsSelectable="true"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fill_point_bank_num_desc"
+                    tools:text="하나 123767162387" />
+
+                <ImageView
+                    android:id="@+id/iv_fill_point_noti"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fill_point_noti"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fill_point_noti"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tv_fill_point_noti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="입금 확인까지 시간이 소요될 수 있습니다."
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/iv_fill_point_noti"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fill_point_bank_num" />
+
+                <ImageView
+                    android:id="@+id/iv_fill_point_noti2"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fill_point_noti2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fill_point_noti2"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tv_fill_point_noti2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="창을 닫기 전 계좌번호를 꼭 복사해 주세요."
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/iv_fill_point_noti2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fill_point_noti" />
+
+                <Button
+                    android:id="@+id/bt_fill_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="@{viewModel.bankNum.empty?@string/fill_point_fill:@string/fill_point_copy}"
+                    app:bindButtonEnabled="@{!viewModel.realPrice.empty}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fill_point_noti2"
+                    app:layout_constraintVertical_bias="1"
+                    tools:text="@string/fill_point_fill" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <WebView
+            android:id="@+id/wv_fill_point"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

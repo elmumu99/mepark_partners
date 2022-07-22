@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.onboard.OnboardViewModel" />
+
+        <variable
+            name="maxPage"
+            type="int" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_gradient_onboard">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_onboard_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:layout_marginTop="16dp"
+            android:clickable="false"
+            android:focusable="false"
+            app:bindTabLayoutMediator="@{vpOnboard}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabBackground="@drawable/ic_dot_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingBottom="0dp"
+            app:tabPaddingEnd="12dp"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingTop="0dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_onboard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="1dp"
+            app:bindViewPagerCallback="@{viewModel.pagerCallback}"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/bt_onboard_start"
+            app:layout_constraintTop_toBottomOf="@id/tl_onboard_indicator" />
+
+        <Button
+            android:id="@+id/bt_onboard_start"
+            style="@style/ButtonStyleNormal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="@string/onboard_start"
+            app:bindInvisibility="@{viewModel.currentPage == maxPage-1}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

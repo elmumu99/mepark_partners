@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="customTextColor" format="color" />
+    <attr name="customTextColorLight" format="color" />
+    <attr name="customTextColorHint" format="color" />
+    <attr name="customButtonTextColor" format="color" />
+    <attr name="customBackgroundColor" format="color" />
+    <attr name="customBackgroundColorGray" format="color" />
+    <attr name="customLightButtonBackgroundColor" format="color" />
+    <attr name="customSelectedColor" format="color" />
+    <attr name="customSelectedTextColor" format="color" />
+</resources>

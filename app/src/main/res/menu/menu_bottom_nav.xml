@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_enter"
+        android:icon="@drawable/img_main_bt_enter"
+        android:title="@string/main_bt_enter" />
+    <item
+        android:id="@+id/bottom_nav_park"
+        android:icon="@drawable/img_main_bt_park"
+        android:title="@string/main_bt_park" />
+    <item
+        android:id="@+id/bottom_nav_park_history"
+        android:icon="@drawable/img_main_bt_history"
+        android:title="@string/main_bt_park_history" />
+    <item
+        android:id="@+id/bottom_nav_more"
+        android:icon="@drawable/ic_baseline_more_horiz_24"
+        android:title="@string/main_bt_more" />
+
+</menu>

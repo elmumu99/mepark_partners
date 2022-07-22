@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mrpark1.meparkpartner.ui.enter.EnterViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/customBackgroundColor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_enter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="@{viewModel.parkingLot.Name}"
+                android:textSize="16sp"
+                tools:text="강원빌딩" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/bn_enter"
+            app:layout_constraintTop_toBottomOf="@+id/tb_enter">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bt_enter_tab_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_bold"
+                    android:padding="16dp"
+                    android:text="@string/enter_tab_enter"
+                    android:textAlignment="center"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view_enter_tab_divider_enter"
+                    app:layout_constraintStart_toStartOf="@+id/view_enter_tab_divider_enter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bt_enter_tab_reserve"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_bold"
+                    android:padding="16dp"
+                    android:text="@string/enter_tab_reserve"
+                    android:textAlignment="center"
+                    android:textColor="?attr/customTextColorLight"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view_enter_tab_divider_reserve"
+                    app:layout_constraintStart_toStartOf="@+id/view_enter_tab_divider_reserve"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_enter_tab_divider_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="?attr/colorPrimary"
+                    app:layout_constraintEnd_toStartOf="@id/view_enter_tab_divider_reserve"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bt_enter_tab_enter" />
+
+                <View
+                    android:id="@+id/view_enter_tab_divider_reserve"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="?attr/customTextColorLight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_enter_tab_divider_enter"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_enter_tab_reserve" />
+
+                <TextView
+                    android:id="@+id/tv_enter_lp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/enter_lp_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_enter_tab_divider_enter" />
+
+                <EditText
+                    android:id="@+id/et_enter_lp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/enter_lp_hint"
+                    android:inputType="number"
+                    android:text="@={viewModel.lp}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_enter_lp" />
+
+                <TextView
+                    android:id="@+id/tv_enter_visitplace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/enter_visitplace"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_enter_lp" />
+
+                <EditText
+                    android:id="@+id/bt_enter_visitplace_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:focusable="false"
+                    android:hint="@string/enter_visitplace"
+                    android:text="@={viewModel.visitPlace}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_enter_visitplace" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_enter_visitplace_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_enter_visitplace_spinner"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@+id/bt_enter_visitplace_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/bt_enter_visitplace_spinner" />
+
+                <TextView
+                    android:id="@+id/tv_enter_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/enter_contact_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bt_enter_visitplace_spinner" />
+
+                <EditText
+                    android:id="@+id/et_enter_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/enter_contact_hint"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:text="@={viewModel.contact}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_enter_contact" />
+
+                <TextView
+                    android:id="@+id/tv_enter_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/enter_memo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_enter_contact" />
+
+
+                <EditText
+                    android:id="@+id/et_enter_memo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="top"
+                    android:minLines="2"
+                    android:text="@={viewModel.memo}"
+                    app:bindDoOnTextChanged="@{viewModel::checkFormsFilled}"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_memo"
+                    tools:layout_editor_absoluteX="18dp" />
+
+                <TextView
+                    android:id="@+id/tv_enter_cartype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/font_bold"
+                    android:text="@string/enter_cartype"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_enter_memo" />
+
+                <RadioGroup
+                    android:id="@+id/rg_enter_cartype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="16dp"
+                    android:checkedButton="@={viewModel.carType}"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_cartype"
+                    tools:layout_editor_absoluteX="18dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_enter_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enter_cartype_small" />
+
+                    <RadioButton
+                        android:id="@+id/rb_enter_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/enter_cartype_big" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/bt_enter_apply"
+                    style="@style/ButtonStyleNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{()->viewModel.addCar()}"
+                    android:text="@string/enter_submit"
+                    app:bindButtonEnabled="@{viewModel.formsFilled}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rg_enter_cartype"
+                    app:layout_constraintVertical_bias="1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bn_enter"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:theme="@style/BottomNavigationTheme"
+            app:itemIconSize="24dp"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_bottom_nav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
