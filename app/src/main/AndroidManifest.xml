@@ -15,9 +15,12 @@
         android:theme="@style/Theme.MeparkPartner"
         android:usesCleartextTraffic="true"
         tools:ignore="LockedOrientationActivity">
-
-        <activity android:name=".ui.hr.AddNewPartnerUserActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.charge.AccidentReceptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hr.AddNewPartnerUserActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.hr.HrSettingActivity"
             android:exported="false" />
