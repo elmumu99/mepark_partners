@@ -33,6 +33,7 @@ enum class Status {
     NEWPARK_ERROR_PROFILE,
     NEWPARK_ERROR_VISITPLACE,
     NEWPARK_ERROR_QR,
+    NEWPARK_NEED_VISITPLACE,
 
     //MigrateUser
     MIGRATE_AUTH_CODE_SENT,
@@ -51,7 +52,10 @@ enum class Status {
 
     //AddPartnerUser
     ADD_PARTNER_USER,
-    UPDATE_PARTNER_USER
+    UPDATE_PARTNER_USER,
 
+    //ManageSale
+    MANAGE_SALE_PARTNER,
+    MANAGE_SALE_PARKING_LOT
 
 }

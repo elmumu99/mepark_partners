@@ -376,7 +376,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_bold"
-            android:text="@{car.timeFee+@string/common_unit_won}"
+            android:text="@{car.Profit+@string/common_unit_won}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@+id/textView32"

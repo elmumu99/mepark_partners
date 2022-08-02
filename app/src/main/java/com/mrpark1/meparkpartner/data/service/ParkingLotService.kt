@@ -57,4 +57,5 @@ interface ParkingLotService {
 
     @POST("/UpdateCommuting")
     suspend fun updateCommuting(@Body request: UpdateCommutingRequest): Response<UpdateCommutingResponse>
+
 }

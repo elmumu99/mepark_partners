@@ -41,7 +41,7 @@ class PartnerUserAdapter():
 
         fun bind(item: PartnerUser){
             tv_name.text = item.Name
-            when(item.CoummuningStatus){
+            when(item.CommutingStatus){
                 "1" ->{ //근무한적 없음
                     tv_state.text = "첫출근"
                     tv_time.text = "근무한적 없음"

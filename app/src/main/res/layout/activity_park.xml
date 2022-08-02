@@ -273,7 +273,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/font_bold"
                             android:maxLines="1"
-                            android:text="정기주차"
+                            android:text="월주차"
                             android:textSize="16sp"
                             app:layout_constrainedWidth="true"
                             app:layout_constraintEnd_toEndOf="parent"

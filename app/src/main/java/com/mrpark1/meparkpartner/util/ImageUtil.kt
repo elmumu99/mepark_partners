@@ -1,15 +1,15 @@
 package com.mrpark1.meparkpartner.util
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.graphics.Matrix
+import android.graphics.*
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
 import androidx.exifinterface.media.ExifInterface
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.qrcode.QRCodeWriter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.ByteArrayOutputStream
 import javax.inject.Inject
@@ -111,6 +111,21 @@ class ImageUtil @Inject constructor(@ApplicationContext private val appContext: 
         val matrix = Matrix()
         matrix.postRotate(degree.toFloat())
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
+    fun getQrCodeBitmap(text: String): Bitmap {
+        val size = 512 //pixels
+        val hints = hashMapOf<EncodeHintType, Int>().also {
+            it[EncodeHintType.MARGIN] = 1
+        } // Make the QR code buffer border narrower
+        val bits = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, size, size)
+        return Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
+                }
+            }
+        }
     }
 
     companion object {

@@ -13,4 +13,6 @@ interface NewParkingLotRepository {
     suspend fun addParkingLotQrcode(addParkingLotQrcodeRequest: AddParkingLotQrcodeRequest): Response<AddParkingLotQrcodeResponse>
     suspend fun updateMyParkingLot(updateMyParkingLotRequest: UpdateMyParkingLotRequest): Response<UpdateMyParkingLotResponse>
     suspend fun removeMyVisitPlace(removeMyVisitPlaceRequest: RemoveMyVisitPlaceRequest): Response<RemoveMyVisitPlaceResponse>
+    suspend fun removeMyParkingLot(removeMyParkingLotRequest: RemoveMyParkingLotRequest): Response<RemoveMyParkingLotResponse>
+
 }

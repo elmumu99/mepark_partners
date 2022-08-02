@@ -2,6 +2,7 @@ package com.mrpark1.meparkpartner.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -23,6 +24,9 @@ import com.mrpark1.meparkpartner.ui.parkhistory.ParkHistoryActivity
 import com.mrpark1.meparkpartner.ui.parkinglotsetting.ParkingLotSettingActivity
 import com.mrpark1.meparkpartner.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 //Activity 상단에는 @AndroidEntryPoint 어노테이션을 달아줘야 Hilt 주입이 가능함. (가능하면 모든 액티비티에)
 @AndroidEntryPoint
@@ -49,6 +53,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 else -> {}
             }
             if (it != Status.LOADING) loadingDialog.cancel()
+        }
+
+        viewModel.commutingStatus.observe(this){
+            when(it){
+                "2" ->{
+                    binding.btMainQr.text = getString(R.string.main_text_qr_finish)
+                }
+                else ->{
+                    binding.btMainQr.text = getString(R.string.main_text_qr_start)
+                }
+            }
         }
 
         //주차장 선택 다이얼로그
@@ -88,11 +103,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         //매출관리
         binding.btMainProfit.setOnClickListener {
             if(Constants.isAdmin){
-                snackBar(R.string.common_placeholder)
+//                snackBar(R.string.common_placeholder)
+                startActivity(Intent(this, ManageSaleActivity::class.java))
+
             }else{
                 snackBar(R.string.main_need_admin)
             }
-//            startActivity(Intent(this, ManageSaleActivity::class.java))
         }
 
         //주차장 설정
@@ -163,6 +179,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onResume() {
         super.onResume()
         viewModel.getMyParkingLots()
+
     }
 
     //파트너사 최초 생성 시 주차장 1개 의무 생성
@@ -184,4 +201,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             startActivity(Intent(this, NoPartnerActivity::class.java))
             finish()
         }).show()
+
+    //뒤로가기 활성화/비활성화
+    private var backPressedOnce = false
+
+    override fun onBackPressed() {
+        when {
+            backPressedOnce -> finishAffinity()
+            else -> {
+                Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT)
+                    .show()
+                backPressedOnce = true
+                GlobalScope.launch {
+                    delay(3000)
+                    backPressedOnce = false
+                }
+            }
+        }
+    }
 }

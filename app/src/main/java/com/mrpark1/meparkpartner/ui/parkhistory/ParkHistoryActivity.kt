@@ -45,19 +45,32 @@ class ParkHistoryActivity :
         binding.rv.adapter = ParkHistoryAdapter({}, parkingLot.Name)
 
         //날짜 선택 다이얼로그
-        binding.editText.setOnClickListener {
+        binding.layoutCalendar.setOnClickListener {
             DatePickerDialog(
                 this,
                 R.style.DatePickerDialogTheme,
-                { _, year, month, day ->
+                { _, sYear, sMonth, sDay ->
+
+                    DatePickerDialog(
+                        this,
+                        R.style.DatePickerDialogTheme,
+                        { _, eYear, eMonth, eDay ->
+
                     viewModel.setSelectedDate(
-                        "$year-${String.format("%02d", month + 1)}-" +
-                                String.format("%02d", day)
-                    )
+                        "$sYear-${String.format("%02d", sMonth + 1)}-" +
+                                String.format("%02d", sDay),
+                        "$eYear-${String.format("%02d", eMonth + 1)}-" +
+                                String.format("%02d", eDay)
+
+                    ) },
+                        viewModel.endDate.value!!.substring(0, 4).toInt(),
+                        viewModel.endDate.value!!.substring(5, 7).toInt() - 1,
+                        viewModel.endDate.value!!.substring(8, 10).toInt()
+                    ).show()
                 },
-                viewModel.selectedDate.value!!.substring(0, 4).toInt(),
-                viewModel.selectedDate.value!!.substring(5, 7).toInt() - 1,
-                viewModel.selectedDate.value!!.substring(8, 10).toInt()
+                viewModel.startDate.value!!.substring(0, 4).toInt(),
+                viewModel.startDate.value!!.substring(5, 7).toInt() - 1,
+                viewModel.startDate.value!!.substring(8, 10).toInt()
             ).show()
         }
 
@@ -79,6 +92,13 @@ class ParkHistoryActivity :
             })
             finish()
             false
+        }
+
+        viewModel.startDate.observe(this){
+            binding.tvStartDay.text = it.toString()
+        }
+        viewModel.endDate.observe(this){
+            binding.tvEndDay.text = it.toString()
         }
     }
 

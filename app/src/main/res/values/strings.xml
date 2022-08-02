@@ -82,10 +82,11 @@
     <string name="main_dialog_no_partner_title">파트너 정보 없음</string>
     <string name="main_dialog_no_partner_message">소속된 파트너 정보가 없습니다. 파트너 초대 화면으로 이동합니다.</string>
     <string name="main_name_desc">님</string>
+    <string name="main_text_qr_start">출근</string>
     <string name="main_text_qr_finish">퇴근</string>
     <string name="main_space_desc">현 주차장 상황:&#160;</string>
     <string name="main_space_slash">&#160;/&#160;</string>
-    <string name="main_enabled_desc">주차장 주차 가능 여부</string>
+    <string name="main_enabled_desc">주차장 예약 가능 버튼</string>
     <string name="main_bt_enter">입차관리</string>
     <string name="main_bt_park">주차관리</string>
     <string name="main_bt_park_history">출차내역</string>
@@ -93,7 +94,7 @@
     <string name="main_bt_parkinglot_setting">주차장 설정</string>
     <string name="main_bt_hr">인사관리</string>
     <string name="main_bt_charge">정산 페이지</string>
-    <string name="main_bt_insurance">보험 가입</string>
+    <string name="main_bt_insurance">보험 관리</string>
     <string name="main_need_admin">관리자 권한이 필요합니다.</string>
 
     <string name="new_partner_photo_hint">이미지 파일</string>

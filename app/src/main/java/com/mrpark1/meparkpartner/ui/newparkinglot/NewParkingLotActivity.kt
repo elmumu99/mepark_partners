@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.mrpark1.meparkpartner.R
 import com.mrpark1.meparkpartner.data.model.common.ParkingLot
 import com.mrpark1.meparkpartner.data.model.common.VisitPlace
@@ -76,10 +78,15 @@ class NewParkingLotActivity :
                 Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
                 Status.ERROR_EXPIRED -> sessionExpired()
                 Status.ERROR -> snackBar(getString(R.string.common_error_unknown))
-
+                Status.NEWPARK_NEED_VISITPLACE -> snackBar("방문지는 1개 이상 있어야 합니다.")
                 else -> {}
             }
             if (it != Status.LOADING) loadingDialog.cancel()
+        }
+
+        viewModel.imageUrl.observe(this){
+            Glide.with(this).load(it).centerCrop().into(binding.ivNewParkingLotProfile)
+//            binding.ivNewParkingLotProfile.setImageURI(it.toUri())
         }
 
         binding.tbNewParkingLot.setNavigationOnClickListener { finish() }
@@ -111,6 +118,18 @@ class NewParkingLotActivity :
             addressResult.launch(
                 Intent(this, AddressActivity::class.java)
             )
+        }
+
+        binding.ivDeleteParkinglot.setOnClickListener {
+            CommonDialog(
+                this,
+                title = "주차장 삭제",
+                message = "정말 삭제하시겠습니까?",
+                positiveText = "삭제",
+                cancelable = true
+            ) {
+                viewModel.deleteParkingLot()
+            }.show()
         }
     }
 

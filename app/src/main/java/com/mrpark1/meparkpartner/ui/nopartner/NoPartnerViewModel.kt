@@ -31,7 +31,7 @@ class NoPartnerViewModel @Inject constructor(private val noPartnerRepository: No
     val start_day = MutableLiveData("")
     val salary = MutableLiveData("")
     val position = MutableLiveData(0)
-    val isVisible = MutableLiveData(true)
+    val isVisible = MutableLiveData(false)
 
     private val _currentStatus = MutableLiveData<Status>()
     val currentStatus: LiveData<Status>

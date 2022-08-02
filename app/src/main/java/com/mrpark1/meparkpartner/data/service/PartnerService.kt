@@ -38,4 +38,7 @@ interface PartnerService {
 
     @POST("RemoveMyEmployee")
     suspend fun removeMyEmployee(@Body request: RemoveMyEmployeeRequest): Response<RemoveMyEmployeeResponse>
+
+    @POST("GetMyPartnerInfo")
+    suspend fun getMyPartnerInfo(@Body request: GetMyPartnerInfoRequest): Response<GetMyPartnerInfoResponse>
 }

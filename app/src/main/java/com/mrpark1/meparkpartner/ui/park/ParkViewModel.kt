@@ -1,5 +1,6 @@
 package com.mrpark1.meparkpartner.ui.park
 
+import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -48,8 +49,17 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
         when (e) {
-            is UnknownHostException -> _currentStatus.value = Status.ERROR_INTERNET
-            is JsonDataException -> _currentStatus.value = Status.ERROR
+            is UnknownHostException -> {
+                _currentStatus.value = Status.ERROR_INTERNET
+                Log.d("TEST@","UnknownHostException")
+            }
+            is JsonDataException -> {
+                _currentStatus.value = Status.ERROR
+                Log.d("TEST@","JsonDataException")
+            }
+            else ->{
+                Log.d("TEST@","e :: $e")
+            }
         }
     }
 
@@ -80,32 +90,13 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
                     _regularCount.value = 0
 
                     for (car in result) {
-                        //무료주차 시간을 제외하고, 기본 주차시간에 따른 요금을 계산한 뒤 초과된 시간만큼은
-                        //10분당 주차요금으로 계산함. 기타 방문지의 경우 10분당 요금으로 고정
-                        val enterDate = dateFormat.parse("${car.EnterDate} ${car.EnterTime}:00")
-                        val serverDate = dateFormat.parse(serverTime)
-
-                        val diff = serverDate!!.time - enterDate!!.time
-                        val hour = diff / (1000 * 60 * 60)
-                        val min = diff / (1000 * 60) % 60
+                        val hour = car.TotalTime.toInt()/60
+                        val min = car.TotalTime.toInt()%60
                         car.parkTime =
                             "${String.format("%02d", hour)} : ${String.format("%02d", min)}"
 
-                        val visitPlace =
-                            parkingLot.VisitPlaces.first { it.PlaceName == car.VisitPlace }
-                        car.defaultFee = visitPlace.DefaultFee
-                        if (car.defaultFee.isBlank()) car.defaultFee = "0"
-
-                        val price =
-                            visitPlace.TenMinutesFee.toInt() * if (visitPlace.PlaceName != "기타") {
-                                ((hour * 60 + min - visitPlace.FreeTime.toInt() - visitPlace.DefaultTime.toInt()) / 10)
-                            } else {
-                                ((hour * 60 + min) / 10)
-                            }
-                        car.timeFee = if (price > 0) price.toString() else "0"
-
                         val finalFee =
-                            car.timeFee.toInt() + car.defaultFee.toInt() - car.Discount.toInt() + car.Penalty.toInt()
+                            car.Profit.toInt() + car.DefaultFee.toInt() - car.Discount.toInt() + car.Penalty.toInt()
                         car.finalFee = if (finalFee > 0) finalFee.toString() else "0"
 
                         //입차/출차/정기주차 댓수 기록

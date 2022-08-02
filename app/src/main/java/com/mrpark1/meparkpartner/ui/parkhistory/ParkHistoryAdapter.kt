@@ -1,5 +1,6 @@
 package com.mrpark1.meparkpartner.ui.parkhistory
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -52,10 +53,16 @@ class ParkHistoryAdapter(
         }
 
         fun bind(car: Car) {
+            if(car.Status == "Return"){
+                binding.btRowCarExit.setText("회차완료")
+            }
+            Log.d("TEST@","car.ExitDate :: ${car.ExitDate}")
+            Log.d("TEST@","car.ExitTime :: ${car.ExitTime}")
+            Log.d("TEST@","car.Status :: ${car.Status}")
             binding.car = car
             binding.parkingLotName = parkingLotName
             binding.isHistory = true
-            binding.isRegular = car.VisitPlace == "일주차" || car.VisitPlace == "월주차"
+            binding.isRegular = car.VisitPlace == "일주차" || car.VisitPlace == "월주차" || car.Status == "Return"
         }
     }
 }

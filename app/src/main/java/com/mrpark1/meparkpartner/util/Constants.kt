@@ -17,5 +17,6 @@ object Constants {
     var PartnerBN = ""
     var parkingLots = ArrayList<ParkingLot>()
     var isAdmin = false
+    var CommutingStatus = "0" // 출근 상태 1: 근무한적 없음 2: 근무중 3: 퇴근  0: 초기화 전
     lateinit var selectedParkingLot : ParkingLot
 }

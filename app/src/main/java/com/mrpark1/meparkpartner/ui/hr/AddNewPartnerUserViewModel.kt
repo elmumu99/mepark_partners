@@ -32,8 +32,7 @@ class AddNewPartnerUserViewModel @Inject constructor(
     val currentStatus: LiveData<Status> = _currentStatus
 
     private val cal = Calendar.getInstance()
-    private val sdf = SimpleDateFormat("yyyy년 MM월 dd일")
-    private val sdfAPI = SimpleDateFormat("yyyy-MM-dd")
+    private val sdf = SimpleDateFormat("yyyy-MM-dd")
     val year_start = MutableLiveData<Int>(cal.get(Calendar.YEAR))
     val month_start = MutableLiveData<Int>(cal.get(Calendar.MONTH))
     val day_start = MutableLiveData<Int>(cal.get(Calendar.DAY_OF_MONTH))
@@ -77,6 +76,8 @@ class AddNewPartnerUserViewModel @Inject constructor(
 
     fun setUserInfo(info: PartnerUser){
         userInfo.value = info
+
+        dateString.value = info.StartDate
     }
 
     fun setMode(position: Int){
@@ -98,14 +99,14 @@ class AddNewPartnerUserViewModel @Inject constructor(
                     PartnerBN = Constants.PartnerBN,
                     Email = email.value!!,
                     ParkingLN = ParkingLN.value!!,
-                    StartDate = sdfAPI.format(cal.timeInMillis),
+                    StartDate = sdf.format(cal.timeInMillis),
                     Salary = salary.value!!
                 ))
             }
             Log.d("TEST@","PartnerBN = ${Constants.PartnerBN}")
             Log.d("TEST@","Email = ${email.value}")
             Log.d("TEST@","ParkingLN = ${ParkingLN.value}")
-            Log.d("TEST@","StartDate = ${sdfAPI.format(cal.timeInMillis)}")
+            Log.d("TEST@","StartDate = ${sdf.format(cal.timeInMillis)}")
             Log.d("TEST@","Salary = ${salary.value}")
             when {
                 response.isSuccessful -> {
@@ -126,12 +127,11 @@ class AddNewPartnerUserViewModel @Inject constructor(
         _currentStatus.value = Status.LOADING
 
         var role = ""
-        Log.d("TEST@","point :: 1")
         if(userRole.value!! == "관리자"){
-            Log.d("TEST@","point :: 2")
+            role = "SubAdministrator"
+        }else if(userRole.value!! == "최초관리자"){
             role = "Administrator"
         }else{
-            Log.d("TEST@","point :: 3")
             role = "Employee"
         }
 
@@ -141,13 +141,13 @@ class AddNewPartnerUserViewModel @Inject constructor(
             val response = withContext(Dispatchers.IO) {
                 hrRepository.updateMyEmployee(
                     UpdateMyEmployeeRequest(
-                    StartDate = sdfAPI.format(cal.timeInMillis),
+                    StartDate = sdf.format(cal.time),
                     Salary = salary.value!!,
                     UserID = userInfo.value!!.UserID,
                     Role = role)
                 )
             }
-            Log.d("TEST@","StartDate = ${sdfAPI.format(cal.timeInMillis)}")
+            Log.d("TEST@","StartDate = ${sdf.format(cal.time)}")
             Log.d("TEST@","Salary = ${salary.value}")
             when {
                 response.isSuccessful -> {

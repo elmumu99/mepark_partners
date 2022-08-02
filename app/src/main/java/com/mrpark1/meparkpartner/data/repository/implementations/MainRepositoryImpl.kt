@@ -6,6 +6,8 @@ import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetParkedCarsRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetParkedCarsResponse
 import com.mrpark1.meparkpartner.data.model.parkinglot.commute.UpdateCommutingRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.commute.UpdateCommutingResponse
+import com.mrpark1.meparkpartner.data.model.partner.GetMyPartnerInfoRequest
+import com.mrpark1.meparkpartner.data.model.partner.GetMyPartnerInfoResponse
 import com.mrpark1.meparkpartner.data.repository.MainRepository
 import com.mrpark1.meparkpartner.data.service.ParkingLotService
 import retrofit2.Response
@@ -23,5 +25,6 @@ class MainRepositoryImpl @Inject constructor(
 
     override suspend fun updateCommuting(updateCommutingRequest: UpdateCommutingRequest): Response<UpdateCommutingResponse> =
         parkingLotService.updateCommuting(updateCommutingRequest)
+
 
 }

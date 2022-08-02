@@ -13,7 +13,8 @@ data class PartnerUser(
     val Birth: String,
     val Contact: String,
     val Name: String,
-    val CoummuningStatus: String,
+    val CommutingStatus: String,
     val StartDateTime: String,
-    val EndTime: String
+    val EndTime: String,
+    val Salary: String,
 ) : Serializable

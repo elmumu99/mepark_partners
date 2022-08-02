@@ -5,7 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 class GetParkHistoryResponse(
+    val TotalExitCar: Int,
+    val TotalReturnCar: Int,
     val ExitCars: List<Car>,
     val ReturnCars: List<Car>,
-    val NowDateTime: String
 )

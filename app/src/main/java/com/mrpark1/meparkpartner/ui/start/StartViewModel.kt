@@ -86,7 +86,7 @@ class StartViewModel @Inject constructor(
     //로컬에 저장된 세션 토큰 확인
     private suspend fun getLocalAccessToken() {
         val accessToken = sharedPrefUtil.getString(SharedPrefUtil.KEY_ACCESS_TOKEN, null)
-        if (accessToken == null) getIDT(signInRequest) //저장된 토큰 없으면 구글로그인
+        if (accessToken == null) getIDT(signUpRequest) //저장된 토큰 없으면 구글로그인
         else getMyInfo() //토큰으로 유저 정보 조회
     }
 
@@ -172,6 +172,11 @@ class StartViewModel @Inject constructor(
                 if(body.Role!=null&&body.Role=="Administrator"){
                     Constants.isAdmin = true
                 }
+                if(body.Role!=null&&body.Role=="SubAdministrator"){
+                    Constants.isAdmin = true
+                }
+                Constants.CommutingStatus = body.CommutingStatus
+
                 getFRT() //FCM 토큰 가져오기
             }
             response.code() == 403 ->

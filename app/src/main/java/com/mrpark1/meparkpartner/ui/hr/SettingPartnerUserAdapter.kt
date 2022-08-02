@@ -51,7 +51,16 @@ class SettingPartnerUserAdapter(private val onItemClick:(Int,Int) -> Unit):
 
         fun bind(item: PartnerUser){
             tv_name.text = item.Name
-            tv_role.text = item.Role
+
+            if(item.Role=="Administrator"){
+                tv_role.text = "최초관리자"
+            }else if(item.Role=="SubAdministrator"){
+                tv_role.text = "관리자"
+            }else{
+                tv_role.text = "직원"
+            }
+
+
 
             if(isEditMode){ //삭제버튼 활성화
                 tv_delete.visibility = View.VISIBLE

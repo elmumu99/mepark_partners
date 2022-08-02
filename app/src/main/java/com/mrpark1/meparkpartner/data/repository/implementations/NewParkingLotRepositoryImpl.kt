@@ -29,4 +29,7 @@ class NewParkingLotRepositoryImpl @Inject constructor(
     override suspend fun removeMyVisitPlace(removeMyVisitPlaceRequest: RemoveMyVisitPlaceRequest): Response<RemoveMyVisitPlaceResponse> =
         parkingLotService.removeMyVisitPlace(removeMyVisitPlaceRequest)
 
+    override suspend fun removeMyParkingLot(removeMyParkingLotRequest: RemoveMyParkingLotRequest): Response<RemoveMyParkingLotResponse> =
+        parkingLotService.removeMyParkingLot(removeMyParkingLotRequest)
+
 }

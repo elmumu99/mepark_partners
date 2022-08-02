@@ -19,6 +19,7 @@ import com.mrpark1.meparkpartner.data.model.common.ParkingLot
 import com.mrpark1.meparkpartner.data.model.common.VisitPlace
 import com.mrpark1.meparkpartner.data.model.parkinglot.AddMyParkingLotRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.AddParkingLotQrcodeRequest
+import com.mrpark1.meparkpartner.data.model.parkinglot.RemoveMyParkingLotRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.UpdateMyParkingLotRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.visitplace.AddMyVisitPlacesRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.visitplace.RemoveMyVisitPlaceRequest
@@ -51,6 +52,7 @@ class NewParkingLotViewModel @Inject constructor(
     val spaceAll = MutableLiveData("")
     val spaceMax = MutableLiveData("")
     val photoUri = MutableLiveData<Uri>()
+    val imageUrl = MutableLiveData("")
 
     val isEdit = MutableLiveData(false)
 
@@ -76,6 +78,7 @@ class NewParkingLotViewModel @Inject constructor(
         insurance.value = parkingLot.Insurance
         address.value = parkingLot.Address
         initialized = true
+        imageUrl.value = parkingLot.ImgUrl
     }
 
     private val _formsFilled = MutableLiveData(false)
@@ -116,7 +119,10 @@ class NewParkingLotViewModel @Inject constructor(
             updateMyParkingLot()
             return
         }
-
+        var photoBR = ""
+        if(photoUri.value!=null){
+            photoBR = imageUtil.uriResizeToBase64(photoUri.value!!)
+        }
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
                 newParkingLotRepository.addMyParkingLot(
@@ -129,7 +135,7 @@ class NewParkingLotViewModel @Inject constructor(
                         MonthParkFee = month.value!!,
                         Spaces = spaceAll.value!!,
                         MinLeftSpaces = spaceMax.value!!,
-                        Photo = imageUtil.uriResizeToBase64(photoUri.value)
+                        Photo = photoBR
                     )
                 )
             }
@@ -164,6 +170,11 @@ class NewParkingLotViewModel @Inject constructor(
     private fun updateMyParkingLot() {
         _currentStatus.value = Status.LOADING
 
+        var photoBR = ""
+        if(photoUri.value!=null){
+            photoBR = imageUtil.uriResizeToBase64(photoUri.value!!)
+        }
+
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
                 newParkingLotRepository.updateMyParkingLot(
@@ -177,7 +188,7 @@ class NewParkingLotViewModel @Inject constructor(
                         MonthParkFee = month.value!!,
                         Spaces = spaceAll.value!!,
                         MinLeftSpaces = spaceMax.value!!,
-                        Photo = imageUtil.uriResizeToBase64(photoUri.value),
+                        Photo = photoBR,
                         ParkEnabled = editParkingLot.ParkEnabled
                     )
                 )
@@ -298,12 +309,22 @@ class NewParkingLotViewModel @Inject constructor(
         when (resultCode) {
             Activity.RESULT_OK -> {
                 //방문지가 삭제되었을 경우 반영
-                data.getStringExtra("deletePlace")?.let { placeName ->
-                    val index = visitPlaces.indexOfFirst { it.PlaceName == placeName }
-                    deletedVisitPlaces.add(visitPlaces[index])
-                    visitPlaces.removeAt(index)
-                    return@updateVisitPlace
+                val deletePlace = data.getStringExtra("deletePlace")
+
+                if(deletePlace!=null) {
+                    if (visitPlaces.size >= 2) { //방문지가 두개 이상일경우
+                        deletePlace.let { placeName ->
+                            val index = visitPlaces.indexOfFirst { it.PlaceName == placeName }
+                            deletedVisitPlaces.add(visitPlaces[index])
+                            visitPlaces.removeAt(index)
+                            return@updateVisitPlace
+                        }
+                    }else{ //방문지가 1개 이하일경우
+                        _currentStatus.value = Status.NEWPARK_NEED_VISITPLACE
+                        return
+                    }
                 }
+
                 //방문지가 수정되었을 경우 반영
                 val visitPlace = data.getSerializableExtra("visitPlace") as VisitPlace
                 if (data.getBooleanExtra("isEdit", false)) {
@@ -359,4 +380,32 @@ class NewParkingLotViewModel @Inject constructor(
 
         }
     }
+
+    fun deleteParkingLot(){
+        if (currentStatus.value == Status.LOADING) return
+        _currentStatus.value = Status.LOADING
+
+        viewModelScope.launch {
+            val response = withContext(Dispatchers.IO) {
+                newParkingLotRepository.removeMyParkingLot(
+                    RemoveMyParkingLotRequest(editParkingLot.ParkingLN)
+                )
+            }
+
+            when {
+                response.isSuccessful -> {
+                    _currentStatus.value = Status.SUCCESS
+                }
+                response.code() == 403 -> {
+                    _currentStatus.value = Status.ERROR_EXPIRED
+                }
+                else -> {
+                    _currentStatus.value = Status.ERROR
+                }
+            }
+        }
+
+    }
+
+
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.mrpark1.meparkpartner.R
 import com.mrpark1.meparkpartner.databinding.ActivityHrSettingBinding
 import com.mrpark1.meparkpartner.ui.common.BaseActivity
@@ -22,6 +23,10 @@ class HrSettingActivity : BaseActivity<ActivityHrSettingBinding>(R.layout.activi
 
         binding.rvPartnerUserList.layoutManager = LinearLayoutManager(this)
         binding.rvPartnerUserList.adapter = SettingPartnerUserAdapter(onItemClick = { position, action->
+            if(viewModel.partnerUserList.value?.get(position)?.Role=="Administrator"){
+                snackBar("최초관리자는 수정하거나 삭제할 수 없습니다.")
+                return@SettingPartnerUserAdapter
+            }
             when(action){
                 //직원 수정
                 0 ->{

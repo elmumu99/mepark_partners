@@ -127,7 +127,6 @@ class HrViewModel @Inject constructor(
                     Log.d("TEST@","response.body() :: ${response.body().toString()}")
                     Log.d("TEST@","response.body().size :: ${response.body()!!.size}")
                     _currentStatus.value = Status.SUCCESS
-                    if(_partnerUserList.value==null) Log.d("TEST@","이거네")
                     partnerUserData.clear()
                     partnerUserData.addAll(response.body()!!)
                     setPartnerUsers()
@@ -150,7 +149,7 @@ class HrViewModel @Inject constructor(
         leaveCount.value = 0
 
         for(i in partnerUserData){
-            when(i.CoummuningStatus){
+            when(i.CommutingStatus){
                 "1"->{ //근무한적없음
                 }
                 "2" ->{ //근무중

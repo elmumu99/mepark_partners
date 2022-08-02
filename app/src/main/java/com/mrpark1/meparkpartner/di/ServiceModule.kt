@@ -1,5 +1,6 @@
 package com.mrpark1.meparkpartner.di
 
+import com.mrpark1.meparkpartner.data.service.ManageSaleService
 import com.mrpark1.meparkpartner.data.service.ParkingLotService
 import com.mrpark1.meparkpartner.data.service.PartnerService
 import com.mrpark1.meparkpartner.data.service.UserService
@@ -29,6 +30,11 @@ object ServiceModule {
     @Provides
     fun provideParkingLotService(retrofit: Retrofit): ParkingLotService =
         retrofit.create(ParkingLotService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideManageSaleService(retrofit: Retrofit): ManageSaleService =
+        retrofit.create(ManageSaleService::class.java)
 }
 
 

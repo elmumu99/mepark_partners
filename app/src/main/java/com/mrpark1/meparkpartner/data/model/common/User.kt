@@ -13,5 +13,6 @@ data class User(
     val Contact: String,
     val Invitation: Invitation?,
     val PartnerStatus: String?,
-    val Role: String?
+    val Role: String?,
+    val CommutingStatus: String,// 출근 상태 1: 근무한적 없음 2: 근무중 3: 퇴근
 ) : Serializable

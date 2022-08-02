@@ -23,6 +23,10 @@ class AddNewPartnerUserActivity : BaseActivity<ActivityAddNewPartnerUserBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.tbAddNewPartnerUser.setNavigationOnClickListener {
+            finish()
+        }
+
         viewModel.setMode(intent.getIntExtra("position",-1))
 
 //        tv_2
@@ -77,16 +81,19 @@ class AddNewPartnerUserActivity : BaseActivity<ActivityAddNewPartnerUserBinding>
                     binding.tv4.visibility = View.GONE
                     binding.tvTitle.text = "직원 수정"
 
-                    binding.tvStartDay.setOnClickListener {  }
                     binding.etName.focusable = View.NOT_FOCUSABLE
 
                     viewModel.setUserInfo(intent.getSerializableExtra("userInfo") as PartnerUser)
 
                     binding.etName.setText(viewModel.userInfo.value?.Name)
                     if(viewModel.userInfo.value?.Role == "Administrator"){
+                        viewModel.setUserRole("최초관리자")
+                    }else if(viewModel.userInfo.value?.Role == "SubAdministrator"){
                         viewModel.setUserRole("관리자")
                     }
                     binding.etEmail.setText(viewModel.userInfo.value?.Email)
+                    binding.etPay.setText(viewModel.userInfo.value?.Salary)
+
 
 
                     binding.btEnter.setOnClickListener {
@@ -107,7 +114,7 @@ class AddNewPartnerUserActivity : BaseActivity<ActivityAddNewPartnerUserBinding>
             if (it != Status.LOADING) loadingDialog.cancel()
         }
 
-        binding.tvStartDay.setOnClickListener {
+        binding.calendarLayout.setOnClickListener {
             DatePickerDialog(
                 this,
                 R.style.DatePickerDialogTheme,

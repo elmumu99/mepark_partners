@@ -45,8 +45,18 @@ class NewPartnerViewModel @Inject constructor(
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
         when (e) {
-            is UnknownHostException -> _currentStatus.value = Status.ERROR_INTERNET
-            is JsonDataException -> _currentStatus.value = Status.ERROR
+            is UnknownHostException -> {
+                _currentStatus.value = Status.ERROR_INTERNET
+                Log.d("TEST@","UnknownHostException :: ${e.message}")
+            }
+            is JsonDataException -> {
+                _currentStatus.value = Status.ERROR
+                Log.d("TEST@","JsonDataException :: ${e.message}")
+            }
+            else ->{
+                _currentStatus.value = Status.ERROR
+                Log.d("TEST@","error :: ${e.localizedMessage}")
+            }
         }
     }
 
@@ -54,6 +64,12 @@ class NewPartnerViewModel @Inject constructor(
     fun applyNewPartner() {
         if (currentStatus.value == Status.LOADING) return
         _currentStatus.value = Status.LOADING
+
+
+        var photoBR = ""
+        if(photoUri.value!=null){
+            photoBR = imageUtil.uriResizeToBase64(photoUri.value!!)
+        }
 
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
@@ -65,12 +81,11 @@ class NewPartnerViewModel @Inject constructor(
                         OwnerName = username,
                         BankAccount = bankAccount.value!!,
                         BankName = selectedBank.value!!,
-                        BRPhoto = imageUtil.uriResizeToBase64(photoUri.value!!)
+                        BRPhoto = photoBR
                     )
                 )
             }
 
-            Log.d("TEST@","image64:: ${imageUtil.uriResizeToBase64(photoUri.value!!)}")
 
             when {
                 response.isSuccessful -> {

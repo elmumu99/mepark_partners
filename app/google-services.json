@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "378481394591-c4os4d8vnnod7retr6c8eefeps9ukneh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrpark1.meparkpartner",
+            "certificate_hash": "cca7f5323dcaf3f94febf2a0a2e9d938c69d6ece"
+          }
+        },
+        {
           "client_id": "378481394591-f0ot9sa1sgd98ukj1ccqsbcupqmu5kj3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -22,7 +30,15 @@
           }
         },
         {
-          "client_id": "378481394591-24chp26t4eapi9bnm92j831an0lencnt.apps.googleusercontent.com",
+          "client_id": "378481394591-k7sjgv6fnjaekvl0rshor1lk7i73rqvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrpark1.meparkpartner",
+            "certificate_hash": "5163cf9567ac65c479e004658aabc23fb303632c"
+          }
+        },
+        {
+          "client_id": "378481394591-n427a0nfh6gmk5o5sfnoko6vbt8j3jka.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

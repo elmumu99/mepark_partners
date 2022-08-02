@@ -8,5 +8,9 @@ data class GetPointHistoryResponse(
     val ACount: Int,
     val BCount: Int,
     val NCount: Int,
+    val ATotalAmount: Int,
+    val BTotalAmount: Int,
+    val NTotalAmount: Int,
+    val Point: Int,
     val Result: List<PointReceipt>
 )

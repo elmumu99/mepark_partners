@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.Group
@@ -33,7 +34,6 @@ class ChargeActivity : BaseActivity<ActivityChargeBinding>(R.layout.activity_cha
         super.onCreate(savedInstanceState)
         //init recycler
         initRecycler()
-
         //현재 날짜와 사용자 이름 보여줌
         binding.date =
             "${viewModel.cal.get(Calendar.YEAR)}년 ${viewModel.cal.get(Calendar.MONTH) + 1}월 ${viewModel.cal.get(Calendar.DAY_OF_MONTH)}일"
@@ -101,6 +101,9 @@ class ChargeActivity : BaseActivity<ActivityChargeBinding>(R.layout.activity_cha
             ).show()
         }
 
+        binding.btAccidentReception.setOnClickListener {
+            startActivity(Intent(this,AccidentReceptionActivity::class.java))
+        }
         viewModel.start_date.observe(this){
             binding.tvStartDay.text = it
         }
@@ -129,12 +132,19 @@ class ChargeActivity : BaseActivity<ActivityChargeBinding>(R.layout.activity_cha
             binding.tvTotalCount.text = it.toString()
         }
 
+        viewModel.point.observe(this){
+            binding.tvPoint.text = "남은 예치금: $it 원"
+        }
+
+        viewModel.TotalUsageAmount.observe(this){
+            binding.tvTotalInsurance.text = "총 보험료 $it 원"
+        }
+
 
     }
 
     override fun onResume() {
         super.onResume()
-
         viewModel.initData()
     }
 

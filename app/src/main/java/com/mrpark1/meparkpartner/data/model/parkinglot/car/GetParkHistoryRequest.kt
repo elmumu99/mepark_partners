@@ -5,5 +5,6 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class GetParkHistoryRequest(
     val ParkingLN: String,
-    val Date: String
+    val StartDate: String,
+    val EndDate: String
 )

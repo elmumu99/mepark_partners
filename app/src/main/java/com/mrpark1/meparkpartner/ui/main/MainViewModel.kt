@@ -9,6 +9,7 @@ import com.mrpark1.meparkpartner.data.model.common.ParkingLot
 import com.mrpark1.meparkpartner.data.model.parkinglot.GetMyParkingLotsRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetParkedCarsRequest
 import com.mrpark1.meparkpartner.data.model.parkinglot.commute.UpdateCommutingRequest
+import com.mrpark1.meparkpartner.data.model.partner.GetMyPartnerInfoRequest
 import com.mrpark1.meparkpartner.data.repository.implementations.MainRepositoryImpl
 import com.mrpark1.meparkpartner.ui.Status
 import com.mrpark1.meparkpartner.util.Constants
@@ -51,6 +52,8 @@ class MainViewModel @Inject constructor(
     private val _parkedCars = MutableLiveData(0)
     val parkedCars: LiveData<Int> = _parkedCars
 
+    val commutingStatus = MutableLiveData(Constants.CommutingStatus)
+
     //서버 시간
     private val _serverTime = MutableLiveData("")
     val serverTime: LiveData<String> = _serverTime
@@ -86,21 +89,30 @@ class MainViewModel @Inject constructor(
                     if (parkingLots.isEmpty()) {
                         _currentStatus.value = Status.MAIN_NO_PARKING_LOTS
                         return@launch
-                    }
-
-                    val lastParkingLN =
-                        sharedPrefUtil.getString(SharedPrefUtil.KEY_SELECTED_PARKING_LOT, "")
-
-                    Log.d("TEST@","lastParkingLN :: $lastParkingLN")
-                    Log.d("TEST@","parkingLots.size :: ${parkingLots.size}")
-                    if (lastParkingLN.isNullOrEmpty()) setCurrentParkingLot(parkingLots[0])
-                    else {
-                        for (parkingLot in parkingLots) {
-                            if (parkingLot.ParkingLN == lastParkingLN)
-                                setCurrentParkingLot(parkingLot)
+                    }else{
+                        try{
+                            //selectedParkingLot이 초기화 된 경우
+                            setCurrentParkingLot(Constants.selectedParkingLot)
+                        }catch (e: Exception){
+                            //selectedParkingLot이 초기화 안된 경우
+                            setCurrentParkingLot(parkingLots[0])
                         }
 
                     }
+
+//                    val lastParkingLN =
+//                        sharedPrefUtil.getString(SharedPrefUtil.KEY_SELECTED_PARKING_LOT, "")
+//
+//                    Log.d("TEST@","lastParkingLN :: $lastParkingLN")
+//                    Log.d("TEST@","parkingLots.size :: ${parkingLots.size}")
+//                    if (lastParkingLN.isNullOrEmpty()) setCurrentParkingLot(parkingLots[0])
+//                    else {
+//                        for (parkingLot in parkingLots) {
+//                            if (parkingLot.ParkingLN == lastParkingLN)
+//                                setCurrentParkingLot(parkingLot)
+//                        }
+//
+//                    }
                 }
                 //세션 만료, 스플래시 화면으로
                 response.code() == 403 -> {
@@ -165,6 +177,12 @@ class MainViewModel @Inject constructor(
             when {
                 response.isSuccessful -> {
                     _currentStatus.value = Status.SUCCESS
+                    when(Constants.CommutingStatus){// 출근 상태 1: 근무한적 없음 2: 근무중 3: 퇴근  0: 초기화 전
+                        "1" ->{ Constants.CommutingStatus = "2" }
+                        "2" ->{ Constants.CommutingStatus = "3" }
+                        "3" ->{ Constants.CommutingStatus = "2" }
+                    }
+                    commutingStatus.value = Constants.CommutingStatus
                 }
                 response.code() == 403 -> {
                     _currentStatus.value = Status.ERROR_EXPIRED

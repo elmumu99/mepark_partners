@@ -77,4 +77,5 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
                 !(lp.value.isNullOrBlank() || visitPlace.value.isNullOrBlank())
         }
     }
+
 }
