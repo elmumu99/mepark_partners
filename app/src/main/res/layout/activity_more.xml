@@ -29,6 +29,11 @@
                 android:textSize="16sp" />
 
         </androidx.appcompat.widget.Toolbar>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/materialGray5"
+            app:layout_constraintTop_toBottomOf="@id/tb_more"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -42,13 +47,38 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_monthly_parking"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="곧 추가되는 기능입니다!"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/main_bt_monthly_parking"
+                    android:gravity="center_vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="15dp"/>
+                <View
+                    android:id="@+id/horizon_monthly_parking"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/materialGray5"
+                    app:layout_constraintTop_toBottomOf="@id/tv_monthly_parking"/>
+
+                <TextView
+                    android:id="@+id/tv_qr_open"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_bt_open_qr"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizon_monthly_parking"
+                    android:padding="15dp"/>
+                <View
+                    android:id="@+id/horizon_qr_open"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/materialGray5"
+                    app:layout_constraintTop_toBottomOf="@id/tv_qr_open"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

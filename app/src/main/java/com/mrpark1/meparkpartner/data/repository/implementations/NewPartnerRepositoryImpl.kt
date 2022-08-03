@@ -2,6 +2,8 @@ package com.mrpark1.meparkpartner.data.repository.implementations
 
 import com.mrpark1.meparkpartner.data.model.partner.ApplyNewPartnerRequest
 import com.mrpark1.meparkpartner.data.model.partner.ApplyNewPartnerResponse
+import com.mrpark1.meparkpartner.data.model.partner.CheckAccountRequest
+import com.mrpark1.meparkpartner.data.model.partner.CheckAccountResponse
 import com.mrpark1.meparkpartner.data.repository.NewPartnerRepository
 import com.mrpark1.meparkpartner.data.service.PartnerService
 import retrofit2.Response
@@ -13,5 +15,8 @@ class NewPartnerRepositoryImpl @Inject constructor(
 
     override suspend fun applyNewPartner(applyNewPartnerRequest: ApplyNewPartnerRequest): Response<ApplyNewPartnerResponse> =
         partnerService.applyNewPartner(applyNewPartnerRequest)
+
+    override suspend fun checkAccount(checkAccountRequest: CheckAccountRequest): Response<CheckAccountResponse> =
+        partnerService.checkAccount(checkAccountRequest)
 
 }

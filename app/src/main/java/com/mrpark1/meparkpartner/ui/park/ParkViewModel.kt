@@ -45,6 +45,7 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
 
     private val _currentStatus = MutableLiveData<Status>()
     val currentStatus: LiveData<Status> = _currentStatus
+    var errorMessage = ""
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
@@ -58,6 +59,7 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
                 Log.d("TEST@","JsonDataException")
             }
             else ->{
+                _currentStatus.value = Status.ERROR
                 Log.d("TEST@","e :: $e")
             }
         }
@@ -141,6 +143,7 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
                     getParkedCars()
                 }
                 else -> {
+                    errorMessage = response.message()
                     _currentStatus.value = Status.ERROR
                 }
             }

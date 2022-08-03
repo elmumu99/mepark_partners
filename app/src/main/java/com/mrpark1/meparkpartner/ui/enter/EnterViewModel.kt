@@ -29,6 +29,7 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
 
     private val _currentStatus = MutableLiveData<Status>()
     val currentStatus: LiveData<Status> = _currentStatus
+    var errorMessage = ""
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
@@ -61,6 +62,7 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
                     _currentStatus.value = Status.SUCCESS
                 }
                 else -> {
+                    errorMessage = response.message()
                     _currentStatus.value = Status.ERROR
                 }
             }

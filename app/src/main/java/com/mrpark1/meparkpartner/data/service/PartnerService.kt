@@ -36,9 +36,12 @@ interface PartnerService {
     @POST("/UpdateMyEmployee")
     suspend fun updateMyEmployee(@Body request: UpdateMyEmployeeRequest): Response<UpdateMyEmployeeResponse>
 
-    @POST("RemoveMyEmployee")
+    @POST("/RemoveMyEmployee")
     suspend fun removeMyEmployee(@Body request: RemoveMyEmployeeRequest): Response<RemoveMyEmployeeResponse>
 
-    @POST("GetMyPartnerInfo")
+    @POST("/GetMyPartnerInfo")
     suspend fun getMyPartnerInfo(@Body request: GetMyPartnerInfoRequest): Response<GetMyPartnerInfoResponse>
+
+    @POST("AcctnmRcmsWapi")
+    suspend fun checkAccount(@Body request: CheckAccountRequest): Response<CheckAccountResponse>
 }

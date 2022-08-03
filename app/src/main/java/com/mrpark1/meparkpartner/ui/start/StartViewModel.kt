@@ -160,15 +160,6 @@ class StartViewModel @Inject constructor(
                 val body = response.body()!!
                 _user = body
                 Constants.PartnerBN = body.PartnerBN
-                Log.d("TEST@","getMyUser().PartnerBN :: " + body.PartnerBN)
-                Log.d("TEST@","getMyUser().UserID :: " + body.UserID)
-                Log.d("TEST@","getMyUser().Birth :: " + body.Birth)
-                Log.d("TEST@","getMyUser().Invitation :: " + body.Invitation)
-                Log.d("TEST@","getMyUser().Status :: " + body.PartnerStatus)
-                Log.d("TEST@","getMyUser().Contact :: " + body.Contact)
-                Log.d("TEST@","getMyUser().Email :: " + body.Email)
-                Log.d("TEST@","getMyUser().Name :: " + body.Name)
-                Log.d("TEST@","getMyUser().Role :: " + body.Role)
                 if(body.Role!=null&&body.Role=="Administrator"){
                     Constants.isAdmin = true
                 }

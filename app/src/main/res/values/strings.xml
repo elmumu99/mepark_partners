@@ -14,6 +14,8 @@
     <string name="onboard_description">Google 계정으로 파트너 앱 이용을 시작해 보세요.</string>
     <string name="onboard_start">미팍 시작하기</string>
 
+    <string name="str_mepark_kor">미팍</string>
+
     <string name="new_user_title">회원가입</string>
     <string name="new_user_description">미스터팍 가입을 환영합니다 :)</string>
     <string name="new_user_name">이름</string>
@@ -66,14 +68,14 @@
     <string name="start_error_no_google">기기에 로그인된 유효한 구글 계정이 없습니다.</string>
     <string name="new_parking_lot_title">주차장 추가</string>
     <string name="new_parking_lot_profile">대표이미지</string>
-    <string name="new_parking_lot_name">주차장 이름</string>
-    <string name="new_parking_lot_visit">방문지</string>
+    <string name="new_parking_lot_name">주차장 이름 *</string>
+    <string name="new_parking_lot_visit">방문지 *</string>
     <string name="new_parking_lot_add_visit">추가</string>
-    <string name="new_parking_lot_other">외부 주차 요금 (10분)</string>
+    <string name="new_parking_lot_other">외부 주차 요금 (10분) *</string>
     <string name="new_parking_lot_won">원</string>
     <string name="new_parking_lot_day">일주차 요금 (미사용 시 공란)</string>
     <string name="new_parking_lot_month">월주차 요금 (미사용 시 공란)</string>
-    <string name="new_parking_lot_space">주차면수 설정</string>
+    <string name="new_parking_lot_space">주차면수 설정 *</string>
     <string name="new_parking_lot_space_all">총 가용댓수 \n(최대 입차가능 댓수)</string>
     <string name="common_unit_dae">대</string>
     <string name="new_parking_lot_add">추가</string>
@@ -95,7 +97,10 @@
     <string name="main_bt_hr">인사관리</string>
     <string name="main_bt_charge">정산 페이지</string>
     <string name="main_bt_insurance">보험 관리</string>
+    <string name="main_bt_monthly_parking">월주차</string>
+    <string name="main_bt_open_qr">QR코드</string>
     <string name="main_need_admin">관리자 권한이 필요합니다.</string>
+
 
     <string name="new_partner_photo_hint">이미지 파일</string>
     <string name="main_bottomsheet_select_parkinglot_title">주차장 선택</string>
@@ -164,26 +169,64 @@
 
     <string-array name="bank_names">
         <item>하나은행</item>
-        <item>NH농협은행</item>
-        <item>지역농협</item>
-        <item>KB국민은행 </item>
-        <item>신한은행</item>
-        <item>우리은행</item>
-        <item>카카오뱅크</item>
-        <item>IBK기업은행</item>
-        <item>K뱅크</item>
-        <item>새마을금고</item>
-        <item>SC제일은행</item>
-        <item>씨티은행</item>
-        <item>BNK부산은행</item>
-        <item>대구은행</item>
-        <item>신협</item>
-        <item>우체국</item>
-        <item>광주은행</item>
-        <item>전북은행</item>
-        <item>수협은행</item>
-        <item>KDB산업은행</item>
-        <item>제주은행</item>
+       <item>산업은행</item>
+       <item>기업은행</item>
+       <item>국민은행</item>
+       <item>수협은행</item>
+       <item>농협은행</item>
+       <item>농협중앙회</item>
+       <item>우리은행</item>
+       <item>SC제일은행</item>
+       <item>한국씨티</item>
+       <item>대구은행</item>
+       <item>부산은행</item>
+       <item>광주은행</item>
+       <item>제주은행</item>
+       <item>전북은행</item>
+       <item>경남은행</item>
+       <item>새마을금고중앙회</item>
+       <item>신협중앙회</item>
+       <item>상호저축은행중앙회</item>
+       <item>HSBC</item>
+       <item>도이치</item>
+       <item>JP모간체이스은행</item>
+       <item>뱅크오브아메리카</item>
+       <item>BNP파리바</item>
+       <item>중국공상은행</item>
+       <item>산림조합중앙회</item>
+       <item>교통은행</item>
+       <item>중국건설은행</item>
+       <item>우정사업본부</item>
+       <item>KEB하나은행</item>
+       <item>신한은행</item>
+       <item>K뱅크은행</item>
+       <item>카카오뱅크</item>
+       <item>유안타증권</item>
+       <item>KB증권</item>
+       <item>BNK투자증권</item>
+       <item>KTB투자증권</item>
+       <item>미래에셋대우</item>
+       <item>삼성증권</item>
+       <item>한국투자증권</item>
+       <item>NH투자증권</item>
+       <item>교보증권</item>
+       <item>하이투자증권</item>
+       <item>현대차증권</item>
+       <item>키움증권</item>
+       <item>이베스트투자증권</item>
+       <item>SK증권</item>
+       <item>대신증권</item>
+       <item>한화투자증권</item>
+       <item>하나금융투자</item>
+       <item>신한금융투자</item>
+       <item>DB금융투자</item>
+       <item>유진투자증권</item>
+       <item>메리츠종합금융</item>
+       <item>바로투자증권</item>
+       <item>부국증권</item>
+       <item>신영증권</item>
+       <item>케이프투자증권</item>
+       <item>한국포스증권</item>
     </string-array>
 
     <string-array name="point_prices">

@@ -376,7 +376,7 @@ class NewParkingLotViewModel @Inject constructor(
             delay(100)
             _formsFilled.value =
                 !(name.value.isNullOrBlank() || address.value.isNullOrBlank() || other.value.isNullOrBlank() || spaceAll.value.isNullOrBlank()
-                        || spaceMax.value.isNullOrBlank() || insurance.value.isNullOrBlank())
+                        || spaceMax.value.isNullOrBlank() || insurance.value.isNullOrBlank() || visitPlaces.size==0)
 
         }
     }

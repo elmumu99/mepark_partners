@@ -33,7 +33,13 @@ class EnterActivity : BaseActivity<ActivityEnterBinding>(R.layout.activity_enter
                 Status.SUCCESS -> finish()
                 Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
                 Status.ERROR_EXPIRED -> sessionExpired()
-                Status.ERROR -> snackBar(getString(R.string.common_error_unknown))
+                Status.ERROR -> {
+                    if(viewModel.errorMessage == ""){
+                        snackBar(getString(R.string.common_error_unknown))
+                    }else{
+                        snackBar(viewModel.errorMessage)
+                    }
+                }
                 else -> {}
             }
             if (it != Status.LOADING) loadingDialog.cancel()
