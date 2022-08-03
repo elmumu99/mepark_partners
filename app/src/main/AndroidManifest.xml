@@ -16,6 +16,18 @@
         android:usesCleartextTraffic="true"
         tools:ignore="LockedOrientationActivity">
         <activity
+            android:name=".ui.newpartner.CheckAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.monthlyparking.AddNewMonthlyParkingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.qr.QrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.monthlyparking.MonthlyParkingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.charge.AccidentReceptionActivity"
             android:exported="false" />
         <activity
