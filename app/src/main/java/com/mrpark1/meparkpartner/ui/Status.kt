@@ -27,6 +27,7 @@ enum class Status {
     //NewPartner
     NEWPART_ERROR_PHOTO,
     NEWPART_PHOTO_PICK,
+    NEWPART_ACCOUNT_CHECK,
 
     //NewParkingLot
     NEWPARK_PLACEHOLDER,

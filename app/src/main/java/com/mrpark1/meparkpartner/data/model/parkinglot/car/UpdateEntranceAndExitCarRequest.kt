@@ -16,5 +16,5 @@ data class UpdateEntranceAndExitCarRequest(
     val EnterTime: String? = null,
     val CarType: String? = null,
     val VisitPlace: String? = null,
-    val Payment: String? = null,
+    val Payment: String? = null, // 0 이면 미결제 , 1이면 현금결제 , 2이면 간편결제
 )

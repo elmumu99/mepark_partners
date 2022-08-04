@@ -1,5 +1,6 @@
 package com.mrpark1.meparkpartner.ui.enter
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,7 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
 
     private val _currentStatus = MutableLiveData<Status>()
     val currentStatus: LiveData<Status> = _currentStatus
-    var errorMessage = ""
+    val errorMessage = MutableLiveData("")
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
@@ -43,6 +44,13 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
     fun addCar() {
         if (currentStatus.value == Status.LOADING) return
         _currentStatus.value = Status.LOADING
+
+//        ParkingLN = parkingLot.ParkingLN,
+//        LP = lp.value!!,
+//        CarType = if (carType.value!! == R.id.rb_enter_small) "Small" else "Big",
+//        VisitPlace = visitPlace.value!!,
+//        Contact = contact.value!!,
+//        Memo = memo.value!!
 
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
@@ -62,7 +70,7 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
                     _currentStatus.value = Status.SUCCESS
                 }
                 else -> {
-                    errorMessage = response.message()
+                    errorMessage.value = response.errorBody().toString()
                     _currentStatus.value = Status.ERROR
                 }
             }

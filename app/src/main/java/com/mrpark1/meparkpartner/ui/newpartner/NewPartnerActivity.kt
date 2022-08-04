@@ -41,6 +41,7 @@ class NewPartnerActivity : BaseActivity<ActivityNewPartnerBinding>(R.layout.acti
                 Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
                 Status.ERROR_EXPIRED -> sessionExpired()
                 Status.ERROR -> snackBar(getString(R.string.common_error_unknown))
+                Status.NEWPART_ACCOUNT_CHECK -> {}
 
                 else -> {}
             }

@@ -34,10 +34,10 @@ class EnterActivity : BaseActivity<ActivityEnterBinding>(R.layout.activity_enter
                 Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
                 Status.ERROR_EXPIRED -> sessionExpired()
                 Status.ERROR -> {
-                    if(viewModel.errorMessage == ""){
+                    if(viewModel.errorMessage.value == ""){
                         snackBar(getString(R.string.common_error_unknown))
                     }else{
-                        snackBar(viewModel.errorMessage)
+                        snackBar(viewModel.errorMessage.value!!)
                     }
                 }
                 else -> {}
@@ -78,5 +78,6 @@ class EnterActivity : BaseActivity<ActivityEnterBinding>(R.layout.activity_enter
             finish()
             false
         }
+
     }
 }

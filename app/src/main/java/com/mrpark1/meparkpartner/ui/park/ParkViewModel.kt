@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mrpark1.meparkpartner.R
 import com.mrpark1.meparkpartner.data.model.common.Car
 import com.mrpark1.meparkpartner.data.model.common.ParkingLot
 import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetParkedCarsRequest
@@ -127,13 +128,16 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
         if (currentStatus.value == Status.LOADING) return
         _currentStatus.value = Status.LOADING
 
+        Log.d("TEST@","ParkingLN = ${parkingLot.ParkingLN}")
+        Log.d("TEST@","CarID = ${carId}")
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
                 parkRepository.updateEntranceAndExitCar(
                     UpdateEntranceAndExitCarRequest(
                         Mode = "3",
                         ParkingLN = parkingLot.ParkingLN,
-                        CarID = carId
+                        CarID = carId,
+                        Payment = "1" // 0 이면 미결제 , 1이면 현금결제 , 2이면 간편결제
                     )
                 )
             }
@@ -143,7 +147,7 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
                     getParkedCars()
                 }
                 else -> {
-                    errorMessage = response.message()
+                    errorMessage = response.errorBody()?.string()!!
                     _currentStatus.value = Status.ERROR
                 }
             }

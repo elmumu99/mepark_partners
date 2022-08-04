@@ -152,22 +152,21 @@ class NewPartnerViewModel @Inject constructor(
             }
 
 
-            checkAccountMessage.value = response.message()
+
+
+            checkAccountMessage.value = if(response.errorBody()==null) "예금주 확인이 되었습니다." else response.errorBody()!!.string()
             when {
                 response.isSuccessful -> {
-                    _currentStatus.value = Status.SUCCESS
+                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
                 }
                 response.code() == 403 -> {
-                    Log.d("TEST@","403 checkAccount :: ${response.message()}")
                     _currentStatus.value = Status.ERROR_EXPIRED
                 }
                 else -> {
-                    Log.d("TEST@","error checkAccount :: ${response.message()}")
-                    _currentStatus.value = Status.ERROR
+                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
                 }
             }
         }
-
     }
 
     fun getBankNum(bankName : String): String{

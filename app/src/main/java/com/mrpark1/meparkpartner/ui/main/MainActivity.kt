@@ -1,7 +1,11 @@
 package com.mrpark1.meparkpartner.ui.main
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.journeyapps.barcodescanner.ScanContract
@@ -162,6 +166,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         //https://www.the-qrcode-generator.com/ 테스트 qr 생성 가능
         binding.btMainQr.setOnClickListener {
             barcodeLauncher.launch(ScanOptions().setOrientationLocked(true))
+        }
+
+        binding.tvMainName.setOnClickListener {
+            val list = resources.getStringArray(R.array.bank_names)
+            BottomSheetSpinner().setInfo(
+                getString(R.string.new_partner_bottomsheet_title),
+                list.asList(),
+                onItemClick = {
+                    snackBar(list[it])
+                },
+                desc = getString(R.string.new_partner_bottomsheet_desc)
+            ).run { show(supportFragmentManager, tag) }
         }
     }
 
