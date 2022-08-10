@@ -42,6 +42,6 @@ interface PartnerService {
     @POST("/GetMyPartnerInfo")
     suspend fun getMyPartnerInfo(@Body request: GetMyPartnerInfoRequest): Response<GetMyPartnerInfoResponse>
 
-    @POST("AcctnmRcmsWapi")
+    @POST("/AcctnmRcmsWapi")
     suspend fun checkAccount(@Body request: CheckAccountRequest): Response<CheckAccountResponse>
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mrpark1.meparkpartner.databinding.RowBottomsheetSpinnerBinding
+import com.mrpark1.meparkpartner.util.Constants
 
 class BottomSheetSpinnerAdapter(private val onItemClick: (Int) -> Unit) :
     ListAdapter<String, RecyclerView.ViewHolder>(BottomSheetSpinnerDiffUtilCallback()) {
@@ -26,6 +27,12 @@ class BottomSheetSpinnerAdapter(private val onItemClick: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as BottomSheetSpinnerHolder).bind(getItem(position))
+
+        if(position<Constants.parkingLots.size){
+            if(getItem(position) == Constants.parkingLots[position].Name){
+                (holder as BottomSheetSpinnerHolder).bindCount(Constants.parkingLots[position].ParkedCarCount.toString())
+            }
+        }
     }
 
     inner class BottomSheetSpinnerHolder(private val binding: RowBottomsheetSpinnerBinding) :
@@ -43,6 +50,10 @@ class BottomSheetSpinnerAdapter(private val onItemClick: (Int) -> Unit) :
 
         fun bind(text: String) {
             binding.text = text
+        }
+
+        fun bindCount(count: String){
+            binding.count = count
         }
     }
 }

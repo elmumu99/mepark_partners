@@ -1,5 +1,6 @@
 package com.mrpark1.meparkpartner.ui.monthlyparking
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.layout.activity_monthly_parking) {
 
-    private val monthlyParkingViewModel: MonthlyParkingViewModel by viewModels()
+    private val viewModel: MonthlyParkingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +32,14 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
                     binding.rvMonthlyParkingDoing.visibility = View.VISIBLE
                     binding.rvMonthlyParkingDone.visibility = View.GONE
                     binding.tvAddMonthlyParking.visibility = View.VISIBLE
+
+                    viewModel.setMode("1")
                 }else{ //계약만료
                     binding.rvMonthlyParkingDoing.visibility = View.GONE
                     binding.rvMonthlyParkingDone.visibility = View.VISIBLE
                     binding.tvAddMonthlyParking.visibility = View.GONE
+
+                    viewModel.setMode("2")
                 }
             }
 
@@ -45,6 +50,12 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
 
         binding.tvAddMonthlyParking.setOnClickListener {
             //TODO Move To AddMonthlyParkingActivity
+            startActivity(Intent(this,AddNewMonthlyParkingActivity::class.java))
+        }
+
+
+        viewModel.mode.observe(this){
+            viewModel.getMonthParkedCars()
         }
     }
 
@@ -53,5 +64,10 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
         binding.rvMonthlyParkingDone.layoutManager = LinearLayoutManager(this)
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMonthParkedCars()
     }
 }

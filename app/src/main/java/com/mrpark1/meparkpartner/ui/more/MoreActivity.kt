@@ -7,6 +7,8 @@ import com.mrpark1.meparkpartner.data.model.common.ParkingLot
 import com.mrpark1.meparkpartner.databinding.ActivityMoreBinding
 import com.mrpark1.meparkpartner.ui.common.BaseActivity
 import com.mrpark1.meparkpartner.ui.enter.EnterActivity
+import com.mrpark1.meparkpartner.ui.monthlyparking.AddNewMonthlyParkingActivity
+import com.mrpark1.meparkpartner.ui.monthlyparking.MonthlyParkingActivity
 import com.mrpark1.meparkpartner.ui.park.ParkActivity
 import com.mrpark1.meparkpartner.ui.parkhistory.ParkHistoryActivity
 
@@ -34,6 +36,10 @@ class MoreActivity : BaseActivity<ActivityMoreBinding>(R.layout.activity_more) {
                 })
             finish()
             false
+        }
+
+        binding.tvMonthlyParking.setOnClickListener {
+            startActivity(Intent(this,MonthlyParkingActivity::class.java))
         }
     }
 }

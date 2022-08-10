@@ -132,6 +132,7 @@ class StartViewModel @Inject constructor(
 
     //구글 로그인 토큰으로 세션 토큰 요청
     private suspend fun getMyAccessToken() {
+        Log.d("TEST@","point 1")
         val response = withContext(Dispatchers.IO) {
             startRepository.getMyAccessToken(
                 GetMyAccessTokenRequest(IDT = idToken)
@@ -152,6 +153,7 @@ class StartViewModel @Inject constructor(
 
     //유저 정보 조회
     private suspend fun getMyInfo() {
+        Log.d("TEST@","point 2")
         val response = withContext(Dispatchers.IO) {
             startRepository.getMyInfo(GetMyInfoRequest())
         }
@@ -166,6 +168,7 @@ class StartViewModel @Inject constructor(
                 if(body.Role!=null&&body.Role=="SubAdministrator"){
                     Constants.isAdmin = true
                 }
+
                 Constants.CommutingStatus = body.CommutingStatus
 
                 getFRT() //FCM 토큰 가져오기

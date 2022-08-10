@@ -112,6 +112,9 @@ class NewPartnerActivity : BaseActivity<ActivityNewPartnerBinding>(R.layout.acti
             snackBar(it)
             if(it=="예금주 확인이 되었습니다."){
                 binding.ivCheckAccount.visibility = View.VISIBLE
+                binding.btNewPartnerBankSpinner.setOnClickListener {}
+                binding.etNewPartnerBank.isEnabled = false
+                binding.btCheckAccount.setOnClickListener {}
             }else{
                 binding.ivCheckAccount.visibility = View.GONE
             }

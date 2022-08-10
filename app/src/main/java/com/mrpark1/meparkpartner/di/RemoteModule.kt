@@ -1,6 +1,8 @@
 package com.mrpark1.meparkpartner.di
 
 import androidx.databinding.ktx.BuildConfig
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.mrpark1.meparkpartner.util.Constants
 import com.mrpark1.meparkpartner.util.TokenInterceptor
 import com.squareup.moshi.Moshi
@@ -11,6 +13,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -42,6 +45,7 @@ object RemoteModule {
     @Singleton
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder().build()
+
 
     @Singleton
     @Provides

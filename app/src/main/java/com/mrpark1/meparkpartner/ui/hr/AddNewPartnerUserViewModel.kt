@@ -30,6 +30,7 @@ class AddNewPartnerUserViewModel @Inject constructor(
 
     private val _currentStatus = MutableLiveData<Status>()
     val currentStatus: LiveData<Status> = _currentStatus
+    val errorMessage = MutableLiveData("")
 
     private val cal = Calendar.getInstance()
     private val sdf = SimpleDateFormat("yyyy-MM-dd")
@@ -49,14 +50,11 @@ class AddNewPartnerUserViewModel @Inject constructor(
         when (e) {
             is UnknownHostException -> {
                 _currentStatus.value = Status.ERROR_INTERNET
-                Log.d("TEST@","updateUser UnknownHostException")
             }
             is JsonDataException -> {
                 _currentStatus.value = Status.ERROR
-                Log.d("TEST@","updateUser JsonDataException")
             }
             else ->{
-                Log.d("TEST@","updateUser else :: ${e.message}")
             }
         }
     }
@@ -116,6 +114,7 @@ class AddNewPartnerUserViewModel @Inject constructor(
                     _currentStatus.value = Status.ERROR_EXPIRED
                 }
                 else -> {
+                    errorMessage.value = response.errorBody()?.string()
                     _currentStatus.value = Status.ERROR
                 }
             }

@@ -70,7 +70,7 @@ class EnterViewModel @Inject constructor(private val enterRepository: EnterRepos
                     _currentStatus.value = Status.SUCCESS
                 }
                 else -> {
-                    errorMessage.value = response.errorBody().toString()
+                    errorMessage.value = response.errorBody()?.string()
                     _currentStatus.value = Status.ERROR
                 }
             }

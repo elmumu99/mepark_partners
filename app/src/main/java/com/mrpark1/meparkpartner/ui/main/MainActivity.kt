@@ -195,7 +195,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onResume() {
         super.onResume()
         viewModel.getMyParkingLots()
-
     }
 
     //파트너사 최초 생성 시 주차장 1개 의무 생성

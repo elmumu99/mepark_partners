@@ -45,7 +45,14 @@ class AddNewPartnerUserActivity : BaseActivity<ActivityAddNewPartnerUserBinding>
                 }
                 Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
                 Status.ERROR_EXPIRED -> sessionExpired()
-                Status.ERROR -> snackBar(getString(R.string.common_error_unknown))
+                Status.ERROR -> {
+                    if(viewModel.errorMessage.value==""){
+                        snackBar(getString(R.string.common_error_unknown))
+                    }else{
+                        snackBar(viewModel.errorMessage.value!!)
+                        viewModel.errorMessage.value = ""
+                    }
+                }
                 Status.ADD_PARTNER_USER ->{
                     binding.tv2.visibility = View.GONE
                     binding.etName.visibility = View.GONE
@@ -160,6 +167,7 @@ class AddNewPartnerUserActivity : BaseActivity<ActivityAddNewPartnerUserBinding>
         viewModel.userRole.observe(this){
             binding.etRoleSpinner.setText(it.toString())
         }
+
 
 
 

@@ -5,6 +5,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class GetPointHistoryResponse(
     val TotalCount: Int,
+    val TotalAmount: Int,
     val ACount: Int,
     val BCount: Int,
     val NCount: Int,

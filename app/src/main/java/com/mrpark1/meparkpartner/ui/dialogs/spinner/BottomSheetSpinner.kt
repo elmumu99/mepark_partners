@@ -23,6 +23,7 @@ class BottomSheetSpinner : BottomSheetDialogFragment() {
     private var title: String? = null
     private lateinit var desc: String
     private var items: ArrayList<String> = arrayListOf()
+    private var counts: ArrayList<Int> = arrayListOf()
     private lateinit var onItemClick: (Int) -> Unit
 
     override fun onCreateView(
@@ -44,6 +45,8 @@ class BottomSheetSpinner : BottomSheetDialogFragment() {
             viewModel.desc = desc
             viewModel.items.clear()
             viewModel.items.addAll(items)
+            viewModel.counts.clear()
+            viewModel.counts.addAll(counts)
             viewModel.onItemClick = onItemClick
         }
 
@@ -73,6 +76,23 @@ class BottomSheetSpinner : BottomSheetDialogFragment() {
         this.desc = desc
         this.items.clear()
         this.items.addAll(items)
+        this.onItemClick = onItemClick
+        return this
+    }
+
+    fun setCountInfo(
+        title: String,
+        items: List<String>,
+        onItemClick: (Int) -> Unit,
+        desc: String = "",
+        counts: List<Int>,
+    ): BottomSheetSpinner {
+        this.title = title
+        this.desc = desc
+        this.items.clear()
+        this.items.addAll(items)
+        this.counts.clear()
+        this.counts.addAll(counts)
         this.onItemClick = onItemClick
         return this
     }

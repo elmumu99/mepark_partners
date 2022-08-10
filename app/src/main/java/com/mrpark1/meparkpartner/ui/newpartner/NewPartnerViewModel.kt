@@ -59,15 +59,54 @@ class NewPartnerViewModel @Inject constructor(
             else ->{
                 _currentStatus.value = Status.ERROR
                 Log.d("TEST@","error :: ${e.localizedMessage}")
+                Log.d("TEST@","error2 :: ${e}")
+                Log.d("TEST@","error3 :: ${e.message}")
             }
         }
     }
 
+
+    fun checkAccount(name: String, num: String){
+        if (currentStatus.value == Status.LOADING) return
+        _currentStatus.value = Status.LOADING
+
+        val bankNum = getBankNum(selectedBank.value!!)
+
+        Log.d("TEST@","ACCT_NM :: $name")
+        Log.d("TEST@","BANK_CD :: $bankNum")
+        Log.d("TEST@","SEARCH_ACCT_NO :: ${bankAccount.value!!}")
+        Log.d("TEST@","ACNM_NO :: $num")
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val response = withContext(Dispatchers.IO) {
+                newPartnerRepository.checkAccount(
+                    CheckAccountRequest(
+                        ACCT_NM = name,
+                        BANK_CD = bankNum,
+                        SEARCH_ACCT_NO = bankAccount.value!!,
+                        ACNM_NO = num
+                    )
+                )
+            }
+
+            when {
+                response.isSuccessful -> {
+                    checkAccountMessage.value = response.body()!!.message
+                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
+                }
+                response.code() == 403 -> {
+                    _currentStatus.value = Status.ERROR_EXPIRED
+                }
+                else -> {
+                    checkAccountMessage.value = "정보가 정확하지 않습니다."
+                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
+                }
+            }
+        }
+    }
     //파트너 생성 요청
     fun applyNewPartner() {
         if (currentStatus.value == Status.LOADING) return
         _currentStatus.value = Status.LOADING
-
 
         var photoBR = ""
         if(photoUri.value!=null){
@@ -89,7 +128,6 @@ class NewPartnerViewModel @Inject constructor(
                 )
             }
 
-
             when {
                 response.isSuccessful -> {
                     _currentStatus.value = Status.SUCCESS
@@ -103,7 +141,6 @@ class NewPartnerViewModel @Inject constructor(
             }
         }
     }
-
     //이미지피커 콜백 처리
     fun getImageFromPickerResult(result: ActivityResult) {
         val resultCode = result.resultCode
@@ -135,39 +172,7 @@ class NewPartnerViewModel @Inject constructor(
 
 
 
-    fun checkAccount(name: String, num: String){
-        if (currentStatus.value == Status.LOADING) return
-        _currentStatus.value = Status.LOADING
 
-        viewModelScope.launch(coroutineExceptionHandler) {
-            val response = withContext(Dispatchers.IO) {
-                newPartnerRepository.checkAccount(
-                    CheckAccountRequest(
-                        ACCT_NM = name,
-                        BANK_CD = getBankNum(selectedBank.value!!),
-                        SEARCH_ACCT_NO = bankAccount.value!!,
-                        ACNM_NO = num
-                    )
-                )
-            }
-
-
-
-
-            checkAccountMessage.value = if(response.errorBody()==null) "예금주 확인이 되었습니다." else response.errorBody()!!.string()
-            when {
-                response.isSuccessful -> {
-                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
-                }
-                response.code() == 403 -> {
-                    _currentStatus.value = Status.ERROR_EXPIRED
-                }
-                else -> {
-                    _currentStatus.value = Status.NEWPART_ACCOUNT_CHECK
-                }
-            }
-        }
-    }
 
     fun getBankNum(bankName : String): String{
         var bankNum = ""

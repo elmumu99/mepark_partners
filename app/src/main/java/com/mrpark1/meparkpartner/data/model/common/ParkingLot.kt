@@ -17,5 +17,6 @@ data class ParkingLot(
     val VisitPlaces: List<VisitPlace>,
     val Insurance: String? = null,
     val Address: String?,
-    val ImgUrl: String
+    val ImgUrl: String,
+    val ParkedCarCount: Int
 ) : Serializable

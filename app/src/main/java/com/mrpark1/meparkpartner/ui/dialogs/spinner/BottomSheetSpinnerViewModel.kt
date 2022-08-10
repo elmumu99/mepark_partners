@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class BottomSheetSpinnerViewModel : ViewModel() {
     val items = ObservableArrayList<String>()
+    val counts = ObservableArrayList<Int>()
     var title = ""
     var desc = ""
     var onItemClick: (Int) -> Unit = {}
