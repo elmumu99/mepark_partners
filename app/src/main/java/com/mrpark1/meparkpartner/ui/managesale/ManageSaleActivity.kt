@@ -16,6 +16,7 @@ import com.mrpark1.meparkpartner.databinding.ActivityManageSaleBinding
 import com.mrpark1.meparkpartner.ui.Status
 import com.mrpark1.meparkpartner.ui.common.BaseActivity
 import com.mrpark1.meparkpartner.ui.dialogs.spinner.BottomSheetSpinner
+import com.mrpark1.meparkpartner.util.CommandUtil
 import com.mrpark1.meparkpartner.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -136,7 +137,7 @@ class ManageSaleActivity : BaseActivity<ActivityManageSaleBinding>(R.layout.acti
             (binding.rvPartnerLoc.adapter as PartnerSaleAdapter).setListItem(it)
         }
         viewModel.totalSales.observe(this){
-            binding.tvSales.text = it
+            binding.tvSales.text = CommandUtil.addCommaNumInt(it)
         }
 
         viewModel.barGraphData.observe(this){

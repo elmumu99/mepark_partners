@@ -3,7 +3,9 @@ package com.mrpark1.meparkpartner.ui.monthlyparking
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
@@ -24,6 +26,18 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
 
         initRecycler()
 
+        viewModel.currentStatus.observe(this) {
+            when (it) {
+                Status.LOADING -> loadingDialog.show()
+                Status.SUCCESS -> {}
+                Status.ERROR_INTERNET -> snackBar(getString(R.string.common_error_internet))
+                Status.ERROR_EXPIRED -> sessionExpired()
+                Status.ERROR -> snackBar(getString(R.string.common_error_unknown))
+                else -> {}
+            }
+            if (it != Status.LOADING) loadingDialog.cancel()
+        }
+
         binding.tlMonthlyParkingTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab?.position
@@ -41,6 +55,8 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
 
                     viewModel.setMode("2")
                 }
+
+                viewModel.getMonthParkedCars()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -53,9 +69,17 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
             startActivity(Intent(this,AddNewMonthlyParkingActivity::class.java))
         }
 
+        binding.tbMonthlyParking.setNavigationOnClickListener { finish() }
 
         viewModel.mode.observe(this){
-            viewModel.getMonthParkedCars()
+            Log.d("TEST@","mode:: $it")
+        }
+
+        viewModel.carList.observe(this){
+            (binding.rvMonthlyParkingDoing.adapter as MonthlyParkingDoingAdapter).setmonthlyParkingList(it)
+        }
+        viewModel.carDoneList.observe(this){
+            (binding.rvMonthlyParkingDone.adapter as MonthlyParkingDoneAdapter).setmonthlyParkingList(it)
         }
     }
 
@@ -63,7 +87,13 @@ class MonthlyParkingActivity : BaseActivity<ActivityMonthlyParkingBinding>(R.lay
         binding.rvMonthlyParkingDoing.layoutManager = LinearLayoutManager(this)
         binding.rvMonthlyParkingDone.layoutManager = LinearLayoutManager(this)
 
-
+        binding.rvMonthlyParkingDoing.adapter = MonthlyParkingDoingAdapter{ car ->
+            startActivity(Intent(this,AddNewMonthlyParkingActivity::class.java).apply {
+                putExtra("car",car)
+                putExtra("mode","update")
+            })
+        }
+        binding.rvMonthlyParkingDone.adapter = MonthlyParkingDoneAdapter()
     }
 
     override fun onResume() {

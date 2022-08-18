@@ -1,6 +1,7 @@
 package com.mrpark1.meparkpartner.data.model.common
 
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class MonthParkedCar (
@@ -17,4 +18,5 @@ data class MonthParkedCar (
     val Payment: String,// 0이면 미결제 , 1이면 간편결제, 2면 현금, 3 카드
     val updated_at: String,
     val User: String,//0 이면 고객 앱 미사용자, 1이면 사용
-)
+    val CarType: String // Small, Big
+): Serializable

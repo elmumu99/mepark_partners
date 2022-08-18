@@ -33,6 +33,9 @@ class MonthlyParkingViewModel @Inject constructor(
     val carListData = arrayListOf<MonthParkedCar>()
     val carList = MutableLiveData<ArrayList<MonthParkedCar>>()
 
+    val carDoneListData = arrayListOf<MonthParkedCar>()
+    val carDoneList = MutableLiveData<ArrayList<MonthParkedCar>>()
+
     //코루틴 내에서 에러 발생 시 캐치 (인터넷 오류 등 분기처리)
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
         e.printStackTrace()
@@ -72,9 +75,15 @@ class MonthlyParkingViewModel @Inject constructor(
 
             when {
                 response.isSuccessful -> {
-                    carListData.clear()
-                    carListData.addAll(response.body()!!.CarResult)
-                    carList.value = carListData
+                    if(mode.value=="1"){
+                        carListData.clear()
+                        carListData.addAll(response.body()!!.CarResult)
+                        carList.value = carListData
+                    }else{
+                        carDoneListData.clear()
+                        carDoneListData.addAll(response.body()!!.CarResult)
+                        carDoneList.value = carDoneListData
+                    }
 
                     _currentStatus.value = Status.SUCCESS
                 }

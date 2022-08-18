@@ -113,7 +113,7 @@
     <string name="enter_tab_enter">입차관리</string>
     <string name="enter_tab_reserve">주차예약</string>
     <string name="enter_lp_desc">차량번호</string>
-    <string name="enter_lp_hint"><![CDATA[예) 123가4567 -> 1234567]]></string>
+    <string name="enter_lp_hint"><![CDATA[예) 123가4567]]></string>
     <string name="enter_visitplace">방문장소</string>
     <string name="enter_contact_desc">핸드폰 번호</string>
     <string name="enter_contact_hint">01012345678</string>

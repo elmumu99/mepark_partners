@@ -33,26 +33,6 @@ class HrActivity : BaseActivity<ActivityHrBinding>(R.layout.activity_hr) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        binding.calendarGroup.setAllOnClickListener{
-//            DatePickerDialog(
-//                this,
-//                R.style.DatePickerDialogTheme,
-//                { _, year, month, day ->
-//                    viewModel.setDate(year,month+1,day)
-//
-//                    //viewModel.getMyPartnerUsersCommutingHistory()
-//                },
-//                viewModel.year.value!!,viewModel.month.value!!-1,viewModel.day.value!!
-//            ).show()
-//        }
-//
-//        viewModel.date.observe(this){
-//            binding.tvDate.text = it
-//        }
-//
-//        commutingHistoryAdapter = CommutingHistoryAdapter(this)
-//        binding.rvEmployeeStatus.adapter = commutingHistoryAdapter
-//        commutingHistoryAdapter.setPartnerUsers(viewModel.partnerUserList)
         viewModel.currentStatus.observe(this) {
             when (it) {
                 Status.LOADING -> loadingDialog.show()
@@ -80,10 +60,7 @@ class HrActivity : BaseActivity<ActivityHrBinding>(R.layout.activity_hr) {
 
 
 
-        binding.tvHr.setOnClickListener {
-            Glide.with(this).load(getQrCodeBitmap(Constants.selectedParkingLot.ParkingLN)).into(binding.ivQr)
-            binding.ivQr.visibility = View.VISIBLE
-        }
+
 
         viewModel.partnerUserList.observe(this){
             (binding.rvEmployeeStatus.adapter as PartnerUserAdapter).setPartnerUsers(it)
@@ -102,25 +79,5 @@ class HrActivity : BaseActivity<ActivityHrBinding>(R.layout.activity_hr) {
         viewModel.getMyPartnerUsers()
     }
 
-    fun Group.setAllOnClickListener(listener : View.OnClickListener?){
-        referencedIds.forEach { id ->
-            rootView.findViewById<View>(id).setOnClickListener(listener)
-        }
-    }
-
-    fun getQrCodeBitmap(text: String): Bitmap {
-        val size = 512 //pixels
-        val hints = hashMapOf<EncodeHintType, Int>().also {
-            it[EncodeHintType.MARGIN] = 1
-        } // Make the QR code buffer border narrower
-        val bits = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, size, size)
-        return Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
-            for (x in 0 until size) {
-                for (y in 0 until size) {
-                    it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
-                }
-            }
-        }
-    }
 }
 

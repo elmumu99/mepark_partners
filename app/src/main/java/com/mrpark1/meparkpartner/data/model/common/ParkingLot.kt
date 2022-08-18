@@ -18,5 +18,6 @@ data class ParkingLot(
     val Insurance: String? = null,
     val Address: String?,
     val ImgUrl: String,
-    val ParkedCarCount: Int
+    val ParkedCarCount: Int,
+    var QRCodeUrl: String
 ) : Serializable

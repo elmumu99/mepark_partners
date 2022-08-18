@@ -58,9 +58,17 @@ interface ParkingLotService {
     @POST("/UpdateCommuting")
     suspend fun updateCommuting(@Body request: UpdateCommutingRequest): Response<UpdateCommutingResponse>
 
+
+    //월주차
     @POST("/AddMonthParkedCar")
     suspend fun addMonthParkedCar(@Body request: AddMonthParkedCarRequest): Response<AddMonthParkedCarResponse>
 
     @POST("/GetMonthParkedCars")
     suspend fun getMonthParkedCars(@Body request: GetMonthParkedCarsRequest): Response<GetMonthParkedCarsResponse>
+
+    @POST("/UpdateMonthParkedCar")
+    suspend fun updateMonthParkedCar(@Body request: UpdateMonthParkedCarRequest): Response<UpdateMonthParkedCarResponse>
+
+    @POST("/RemoveMonthParkedCar")
+    suspend fun removeMonthParkedCar(@Body request: RemoveMonthParkedCarRequest): Response<RemoveMonthParkedCarResponse>
 }

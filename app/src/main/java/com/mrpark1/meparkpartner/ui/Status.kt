@@ -57,6 +57,10 @@ enum class Status {
 
     //ManageSale
     MANAGE_SALE_PARTNER,
-    MANAGE_SALE_PARKING_LOT
+    MANAGE_SALE_PARKING_LOT,
 
+
+    //MonthPark
+    MONTH_PARK_UPDATE_SUCCESS,
+    MONTH_PARK_DELETE_SUCCESS
 }

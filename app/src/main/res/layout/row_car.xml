@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.mrpark1.meparkpartner.util.CommandUtil"/>
 
         <variable
             name="car"
@@ -20,6 +21,7 @@
         <variable
             name="isRegular"
             type="Boolean" />
+
 
     </data>
 
@@ -312,7 +314,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/font_bold"
-            android:text="@{car.finalFee}"
+            android:text="@{CommandUtil.INSTANCE.addCommaNumInt(car.finalFee)}"
             android:textColor="?attr/colorPrimary"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"

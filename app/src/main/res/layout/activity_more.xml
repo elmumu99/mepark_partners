@@ -55,7 +55,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:padding="15dp"/>
+                    android:padding="30dp"/>
                 <View
                     android:id="@+id/horizon_monthly_parking"
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/horizon_monthly_parking"
-                    android:padding="15dp"/>
+                    android:padding="30dp"/>
                 <View
                     android:id="@+id/horizon_qr_open"
                     android:layout_width="match_parent"

@@ -16,6 +16,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -24,6 +25,17 @@
                 android:textSize="16sp" />
         </androidx.appcompat.widget.Toolbar>
 
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:visibility="gone"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="@id/tb_monthly_parking"
+            app:layout_constraintTop_toTopOf="@id/tb_monthly_parking"
+            app:layout_constraintBottom_toBottomOf="@id/tb_monthly_parking"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:layout_marginRight="15dp"/>
         <TextView
             android:id="@+id/tv_monthly_parking_lp"
             android:layout_width="wrap_content"
@@ -44,7 +56,7 @@
             android:layout_marginHorizontal="18dp"
             android:layout_marginVertical="8dp"
             android:hint="@string/enter_lp_hint"
-            android:inputType="number"
+            android:lines="1"
             app:layout_constraintTop_toBottomOf="@id/tv_monthly_parking_lp" />
 
         <TextView

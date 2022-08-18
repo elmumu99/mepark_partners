@@ -100,27 +100,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
                 <TextView
-                    android:id="@+id/tv_total_insurance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="24dp"
-                    android:text="총 보험료: 0원"
-                    app:layout_constraintEnd_toStartOf="@+id/bt_charge_fill"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view8" />
-
-                <TextView
                     android:id="@+id/tv_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:text="남은 예치금: 0원"
+                    android:layout_marginLeft="30dp"
                     app:layout_constraintEnd_toStartOf="@+id/bt_charge_fill"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="@+id/tv_total_insurance"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_total_insurance" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view8"
+                    app:layout_constraintBottom_toTopOf="@+id/view_horizontal"/>
 
                 <Button
                     android:id="@+id/bt_charge_fill"
@@ -154,20 +143,18 @@
                         android:id="@+id/tv_case_all_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
                         android:text="총 건수 :"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toTopOf="@+id/tv_total_insurance"/>
                     <TextView
                         android:id="@+id/tv_total_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/tv_case_all_1"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:textSize="17sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_total_insurance"
                         android:textStyle="bold"
                         tools:text="312"
                         android:layout_marginLeft="5dp"/>
@@ -177,10 +164,19 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/tv_total_count"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:textSize="17sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_total_insurance"
                         android:text="건"
                         android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_total_insurance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_case_all_1"
+                        app:layout_constraintStart_toStartOf="@+id/tv_case_all_1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:text="총 보험료 : 1000000원"/>
 
                     <TextView
                         android:id="@+id/tv_common"

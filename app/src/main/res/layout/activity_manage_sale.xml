@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="15sp"
                             android:textColor="@color/brandBlueSecondary"
-                            android:text="240,000"
+                            android:text="0"
                             android:textStyle="bold"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_all"

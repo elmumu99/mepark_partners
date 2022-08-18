@@ -11,6 +11,7 @@ import com.mrpark1.meparkpartner.ui.monthlyparking.AddNewMonthlyParkingActivity
 import com.mrpark1.meparkpartner.ui.monthlyparking.MonthlyParkingActivity
 import com.mrpark1.meparkpartner.ui.park.ParkActivity
 import com.mrpark1.meparkpartner.ui.parkhistory.ParkHistoryActivity
+import com.mrpark1.meparkpartner.ui.qr.QrActivity
 
 class MoreActivity : BaseActivity<ActivityMoreBinding>(R.layout.activity_more) {
     //더보기 액티비티 (바텀내비처럼 생긴 그것에만 들어있음. 어디에 쓸지는 잘 모름)
@@ -41,5 +42,10 @@ class MoreActivity : BaseActivity<ActivityMoreBinding>(R.layout.activity_more) {
         binding.tvMonthlyParking.setOnClickListener {
             startActivity(Intent(this,MonthlyParkingActivity::class.java))
         }
+
+        binding.tvQrOpen.setOnClickListener {
+            startActivity(Intent(this,QrActivity::class.java))
+        }
+
     }
 }

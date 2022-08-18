@@ -23,7 +23,6 @@
                 android:text="나의 월주차"
                 android:textSize="16sp" />
         </androidx.appcompat.widget.Toolbar>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_monthly_parking_tab"
             android:layout_width="match_parent"
@@ -46,8 +45,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rvLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tl_monthly_parking_tab">
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tl_monthly_parking_tab"
+            app:layout_constraintBottom_toTopOf="@id/tv_add_monthly_parking">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_monthly_parking_doing"
                 android:layout_width="match_parent"
@@ -67,9 +67,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:text="월주차 추가"
             android:textColor="@color/brandBlue"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginVertical="30dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

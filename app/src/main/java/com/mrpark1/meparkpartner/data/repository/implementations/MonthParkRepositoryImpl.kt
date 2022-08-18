@@ -1,9 +1,6 @@
 package com.mrpark1.meparkpartner.data.repository.implementations
 
-import com.mrpark1.meparkpartner.data.model.parkinglot.car.AddMonthParkedCarRequest
-import com.mrpark1.meparkpartner.data.model.parkinglot.car.AddMonthParkedCarResponse
-import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetMonthParkedCarsRequest
-import com.mrpark1.meparkpartner.data.model.parkinglot.car.GetMonthParkedCarsResponse
+import com.mrpark1.meparkpartner.data.model.parkinglot.car.*
 import com.mrpark1.meparkpartner.data.repository.MonthParkRepository
 import com.mrpark1.meparkpartner.data.service.ParkingLotService
 import retrofit2.Response
@@ -16,4 +13,10 @@ class MonthParkRepositoryImpl @Inject constructor(
 
     override suspend fun getMonthParkedCars(getMonthParkedCarsRequest: GetMonthParkedCarsRequest): Response<GetMonthParkedCarsResponse> =
         parkingLotService.getMonthParkedCars(getMonthParkedCarsRequest)
+
+    override suspend fun updateMonthParkedCar(updateMonthParkedCarRequest: UpdateMonthParkedCarRequest): Response<UpdateMonthParkedCarResponse> =
+        parkingLotService.updateMonthParkedCar(updateMonthParkedCarRequest)
+
+    override suspend fun removeMonthParkedCar(removeMonthParkedCarRequest: RemoveMonthParkedCarRequest): Response<RemoveMonthParkedCarResponse> =
+        parkingLotService.removeMonthParkedCar(removeMonthParkedCarRequest)
 }

@@ -12,7 +12,7 @@ import com.mrpark1.meparkpartner.data.model.common.MonthParkedCar
 import com.mrpark1.meparkpartner.util.CommandUtil
 import com.mrpark1.meparkpartner.util.Constants
 
-class MonthlyParkingDoingAdapter(private val onItemClick:(MonthParkedCar) -> Unit): RecyclerView.Adapter<MonthlyParkingDoingAdapter.ViewHolder>() {
+class MonthlyParkingDoneAdapter(): RecyclerView.Adapter<MonthlyParkingDoneAdapter.ViewHolder>() {
 
     private var monthlyParkingList = arrayListOf<MonthParkedCar>()
     fun setmonthlyParkingList(data: List<MonthParkedCar>){
@@ -52,10 +52,10 @@ class MonthlyParkingDoingAdapter(private val onItemClick:(MonthParkedCar) -> Uni
 //            tv_car_type.text = 파라미터 없음
             tv_contact.text = item.Contact
             tv_period.text = item.StartDate + " ~ " + item.EndDate
-            bt_car_state.text = "신청완료"
+            bt_car_state.text = "계약만료"
             tv_price.text = CommandUtil.addCommaNumInt(item.Profit)
 
-            iv_car_more.setOnClickListener { onItemClick(item) }
+            iv_car_more.visibility = View.GONE
         }
     }
 }

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mrpark1.meparkpartner.R
 import com.mrpark1.meparkpartner.data.model.payment.CardPaymentInfo
+import com.mrpark1.meparkpartner.util.CommandUtil
 
 class ChargingHistoryAdapter():
     RecyclerView.Adapter<ChargingHistoryAdapter.ViewHolder>(){
@@ -56,7 +57,7 @@ class ChargingHistoryAdapter():
             }
 
             tv_payment_date.text = item.P_AUTH_DT
-            tv_payment_amt.text = item.P_AMT
+            tv_payment_amt.text = CommandUtil.addCommaNumInt(item.P_AMT)
             tv_payment_auth_date.text = item.P_AUTH_DT
         }
     }

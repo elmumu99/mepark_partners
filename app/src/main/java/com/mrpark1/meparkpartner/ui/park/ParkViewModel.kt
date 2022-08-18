@@ -104,9 +104,9 @@ class ParkViewModel @Inject constructor(private val parkRepository: ParkReposito
 
                         //입차/출차/정기주차 댓수 기록
                         when {
-                            car.VisitPlace == "일주차" || car.VisitPlace == "월주차" -> _regularCount.value =
+                            car.VisitPlace == "월주차" -> _regularCount.value =
                                 _regularCount.value!! + 1
-                            car.Status == "Enter" -> _enterCount.value = _enterCount.value!! + 1
+                            car.VisitPlace == "일주차" || car.Status == "Enter" -> _enterCount.value = _enterCount.value!! + 1
                             car.Status == "Paid" -> _exitCount.value = _exitCount.value!! + 1
                         }
                     }

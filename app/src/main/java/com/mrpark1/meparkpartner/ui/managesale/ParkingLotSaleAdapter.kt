@@ -10,6 +10,7 @@ import com.mrpark1.meparkpartner.R
 import com.mrpark1.meparkpartner.data.model.managesale.ParkingLotData
 import com.mrpark1.meparkpartner.data.model.managesale.VisitPlaceData
 import com.mrpark1.meparkpartner.ui.hr.SettingPartnerUserAdapter
+import com.mrpark1.meparkpartner.util.CommandUtil
 
 class ParkingLotSaleAdapter(private val onItemClick:(Int) -> Unit):
     RecyclerView.Adapter<ParkingLotSaleAdapter.ViewHolder>() {
@@ -41,7 +42,7 @@ class ParkingLotSaleAdapter(private val onItemClick:(Int) -> Unit):
 
         fun bind(item: VisitPlaceData){
             tv_visit_place_name.text = item.VisitPlace
-            tv_sale.text = item.VisitPlaceProfit.toString()
+            tv_sale.text = CommandUtil.addCommaNumInt(item.VisitPlaceProfit.toString())
             explainLayout.setOnClickListener { onItemClick(adapterPosition)}
         }
 

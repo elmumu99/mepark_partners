@@ -17,6 +17,7 @@ import com.mrpark1.meparkpartner.databinding.ActivityChargeBinding
 import com.mrpark1.meparkpartner.ui.Status
 import com.mrpark1.meparkpartner.ui.common.BaseActivity
 import com.mrpark1.meparkpartner.ui.managesale.ManageSaleViewModel
+import com.mrpark1.meparkpartner.util.CommandUtil
 import com.mrpark1.meparkpartner.util.SharedPrefUtil
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -133,11 +134,11 @@ class ChargeActivity : BaseActivity<ActivityChargeBinding>(R.layout.activity_cha
         }
 
         viewModel.point.observe(this){
-            binding.tvPoint.text = "남은 예치금: $it 원"
+            binding.tvPoint.text = "남은 예치금: ${CommandUtil.addCommaNumInt(it.toString())} 원"
         }
 
         viewModel.TotalUsageAmount.observe(this){
-            binding.tvTotalInsurance.text = "총 보험료 $it 원"
+            binding.tvTotalInsurance.text = "총 보험료 : ${CommandUtil.addCommaNumInt(it.toString())} 원"
         }
 
 
