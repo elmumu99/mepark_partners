@@ -4,11 +4,11 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GetMyPartnerStatisticsResponse(
-    val TotalProfit: Int,
-    val TotalIn: Int, // 전체 들어온 차량 수
-    val TotalReturn: Int, // 전체 회차 수
-    val Payment1: Int, //현금 결제
-    val Payment2: Int, // 간편 결제
-    val Payment0: Int, // 미 결제
-    val ParkingLots: List<ParkingLotData>
+    var TotalProfit: Int = 0,
+    var TotalIn: Int = 0, // 전체 들어온 차량 수
+    var TotalReturn: Int = 0, // 전체 회차 수
+    var Payment1: Int = 0, //현금 결제
+    var Payment2: Int = 0, // 간편 결제
+    var Payment0: Int = 0, // 미 결제
+    var ParkingLots: List<ParkingLotData>
 )

@@ -76,6 +76,9 @@ class StartViewModel @Inject constructor(
                 sharedPrefUtil.put(SharedPrefUtil.KEY_ACCESS_TOKEN, Constants.testToken)
                 getLocalAccessToken()
             }else{
+                if(sharedPrefUtil.getString(SharedPrefUtil.KEY_ACCESS_TOKEN,"") == Constants.testToken){
+                    sharedPrefUtil.put(SharedPrefUtil.KEY_ACCESS_TOKEN,"")
+                }
                 checkFirstLaunch()
             }
         }
@@ -90,8 +93,8 @@ class StartViewModel @Inject constructor(
 
     //로컬에 저장된 세션 토큰 확인
     private suspend fun getLocalAccessToken() {
-        val accessToken = sharedPrefUtil.getString(SharedPrefUtil.KEY_ACCESS_TOKEN, null)
-        if (accessToken == null) getIDT(signUpRequest) //저장된 토큰 없으면 구글로그인
+        val accessToken = sharedPrefUtil.getString(SharedPrefUtil.KEY_ACCESS_TOKEN, "")
+        if (accessToken == "") getIDT(signUpRequest) //저장된 토큰 없으면 구글로그인
         else getMyInfo() //토큰으로 유저 정보 조회
     }
 

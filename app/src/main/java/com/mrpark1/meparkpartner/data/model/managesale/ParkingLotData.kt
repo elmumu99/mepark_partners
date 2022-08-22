@@ -5,9 +5,9 @@ import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class ParkingLotData(
-    val ParkingLN: String,
-    val Name: String,
-    val ParkingLotProfit: Int,
-    val ParkingLotTotalIN: Int,
-    val ParkingLotTotalReturn: Int
+    var ParkingLN: String = "",
+    var Name: String = "",
+    var ParkingLotProfit: Int = 0,
+    var ParkingLotTotalIN: Int = 0,
+    var ParkingLotTotalReturn: Int = 0
 ): Serializable

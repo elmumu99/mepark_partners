@@ -106,17 +106,12 @@ class ManageSaleActivity : BaseActivity<ActivityManageSaleBinding>(R.layout.acti
             ).show()
         }
 
+        binding.tvTabTitle.setOnClickListener {
+            showParkingLotList()
+        }
+
         binding.ivSelectParkinglot.setOnClickListener {
-            BottomSheetSpinner().setInfo(
-                getString(R.string.main_bottomsheet_select_parkinglot_title),
-                Constants.parkingLots.map { it.Name },
-                onItemClick = {
-                    if(Constants.parkingLots[it].Name!=Constants.selectedParkingLot.Name){
-                        viewModel.setTitle(Constants.parkingLots[it].Name)
-                        Constants.selectedParkingLot = Constants.parkingLots[it]
-                        viewModel.getMyParkingLotStatistics()
-                    }
-                }).run { show(supportFragmentManager, tag) }
+            showParkingLotList()
         }
 
         viewModel.startDate.observe(this) {
@@ -165,6 +160,19 @@ class ManageSaleActivity : BaseActivity<ActivityManageSaleBinding>(R.layout.acti
             }
         }
 
+    }
+
+    fun showParkingLotList(){
+        BottomSheetSpinner().setInfo(
+            getString(R.string.main_bottomsheet_select_parkinglot_title),
+            Constants.parkingLots.map { it.Name },
+            onItemClick = {
+                if(Constants.parkingLots[it].Name!=Constants.selectedParkingLot.Name){
+                    viewModel.setTitle(Constants.parkingLots[it].Name)
+                    Constants.selectedParkingLot = Constants.parkingLots[it]
+                    viewModel.getMyParkingLotStatistics()
+                }
+            }).run { show(supportFragmentManager, tag) }
     }
 
     fun initChart(){

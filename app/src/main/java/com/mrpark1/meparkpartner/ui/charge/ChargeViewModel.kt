@@ -51,6 +51,9 @@ class ChargeViewModel @Inject constructor(
         when (e) {
             is UnknownHostException -> _currentStatus.value = Status.ERROR_INTERNET
             is JsonDataException -> _currentStatus.value = Status.ERROR
+            else -> {
+                _currentStatus.value = Status.ERROR_INTERNET
+            }
         }
     }
 
@@ -70,11 +73,11 @@ class ChargeViewModel @Inject constructor(
     val sdfPH = SimpleDateFormat("yyyy-MM-dd")
 
     val year_start = MutableLiveData<Int>(cal.get(Calendar.YEAR))
-    val month_start = MutableLiveData<Int>(1)
+    val month_start = MutableLiveData<Int>(cal.get(Calendar.MONTH)+1)
     val day_start = MutableLiveData<Int>(1)
     val start_date = MutableLiveData<String>(
         "${cal.get(Calendar.YEAR)}년" +
-                "${1}월" +
+                "${cal.get(Calendar.MONTH)+1}월" +
                 "${1}일")
 
 

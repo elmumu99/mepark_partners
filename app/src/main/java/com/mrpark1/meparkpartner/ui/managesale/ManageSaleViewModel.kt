@@ -62,7 +62,10 @@ class ManageSaleViewModel @Inject constructor(
     private val cal = Calendar.getInstance()
     private val sdf = SimpleDateFormat("yyyy-MM-dd")
 
-    private val _startDate = MutableLiveData(sdf.format(cal.timeInMillis))
+    private val _startDate = MutableLiveData(
+        "${cal.get(Calendar.YEAR)}-" +
+                "${String.format("%02d",cal.get(Calendar.MONTH)+1)}-" +
+                "01")
     val startDate: LiveData<String> = _startDate
 
     private val _endDate = MutableLiveData(sdf.format(cal.timeInMillis))
@@ -158,7 +161,7 @@ class ManageSaleViewModel @Inject constructor(
                         _ParkingLotName.add(data.Name)
                     }
                     barGraphLabel.value = _ParkingLotName
-                    val barDataSet = BarDataSet(_barGraphData,"barChartName")
+                    val barDataSet = BarDataSet(_barGraphData,"")
                     barDataSet.axisDependency = YAxis.AxisDependency.RIGHT
                     barDataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
                     barGraphData.value = BarData(barDataSet)

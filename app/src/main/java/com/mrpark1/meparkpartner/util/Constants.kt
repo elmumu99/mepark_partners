@@ -13,7 +13,7 @@ object Constants {
         "378481394591-24chp26t4eapi9bnm92j831an0lencnt.apps.googleusercontent.com"
     const val TAG = "debug"
 
-    const val isTestMode = true
+    const val isTestMode = false
     const val testToken = "ZDY4YjIyOWItZmJkNC00MmY1LWE0YmUtNjVmOTZjOWZhYzNm"
 
     var IDT = ""
