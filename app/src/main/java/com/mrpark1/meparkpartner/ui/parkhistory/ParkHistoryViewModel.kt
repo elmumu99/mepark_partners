@@ -75,6 +75,7 @@ class ParkHistoryViewModel @Inject constructor(private val parkHistoryRepository
 
             endDateString = _endDate.value!!
         }
+
         viewModelScope.launch(coroutineExceptionHandler) {
             val response = withContext(Dispatchers.IO) {
                 parkHistoryRepository.getParkHistory(

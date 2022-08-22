@@ -71,6 +71,17 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/tv_insurance_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0 원"
+            android:layout_marginLeft="5dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"/>
+
+        <TextView
             android:id="@+id/tv_enter_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

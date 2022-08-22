@@ -34,6 +34,7 @@ class PointHistoryAdapter():
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val tv_parking_lot_name = view.findViewById<TextView>(R.id.tv_parking_lot_name)
         val tv_insurance = view.findViewById<TextView>(R.id.tv_insurance)
+        val tv_insurance_fee = view.findViewById<TextView>(R.id.tv_insurance_fee)
         val tv_car_num = view.findViewById<TextView>(R.id.tv_car_num)
         val tv_car_type = view.findViewById<TextView>(R.id.tv_car_type)
         val tv_enter_time = view.findViewById<TextView>(R.id.tv_enter_time)
@@ -53,6 +54,7 @@ class PointHistoryAdapter():
             }else{
                 carType = "(대형/SUV)"
             }
+            tv_insurance_fee.text = item.InsuranceFee + " 원"
             tv_car_type.text = carType
             tv_enter_time.text = item.EnterDateTime
             var totalTime = ""

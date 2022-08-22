@@ -62,7 +62,7 @@ class ParkHistoryAdapter(
             binding.car = car
             binding.parkingLotName = parkingLotName
             binding.isHistory = true
-            binding.isRegular = car.VisitPlace == "일주차" || car.VisitPlace == "월주차" || car.Status == "Return"
+            binding.isRegular = car.VisitPlace == "월주차" || car.Status == "Return"
         }
     }
 }

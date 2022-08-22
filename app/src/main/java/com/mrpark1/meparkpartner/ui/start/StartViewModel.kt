@@ -72,7 +72,12 @@ class StartViewModel @Inject constructor(
         _currentStatus.value = Status.START_LOGIC_STARTED
 
         viewModelScope.launch(coroutineExceptionHandler) {
-            checkFirstLaunch()
+            if(Constants.isTestMode){
+                sharedPrefUtil.put(SharedPrefUtil.KEY_ACCESS_TOKEN, Constants.testToken)
+                getLocalAccessToken()
+            }else{
+                checkFirstLaunch()
+            }
         }
     }
 
@@ -203,4 +208,6 @@ class StartViewModel @Inject constructor(
             else -> _currentStatus.value = Status.ERROR
         }
     }
+
+
 }

@@ -122,6 +122,8 @@ class ChargeViewModel @Inject constructor(
         val startLong = cal.timeInMillis
         val startStringCH = sdfCH.format(startLong)
         startDateCH = startStringCH + "000000"
+        val startStringPH = sdfPH.format(startLong)
+        startDatePH = "$startStringPH 00:00"
 
         cal.set(eYear, eMonth-1, eDay)
         cal.add(Calendar.DAY_OF_MONTH,2)
@@ -129,7 +131,7 @@ class ChargeViewModel @Inject constructor(
         val endStringCH = sdfCH.format(endLong)
         endDateCH = endStringCH + "235959"
         val endStringPH = sdfPH.format(endLong)
-        endDatePH = endStringPH + " 23:59"
+        endDatePH = "$endStringPH 23:59"
 
 
 
